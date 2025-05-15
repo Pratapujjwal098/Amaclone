@@ -1,17 +1,39 @@
 // Main JavaScript for AmaClone
 
-// Combine all product arrays
+// Initialize products
 let allProducts = [];
-try {
-    // First try to get products from both Indian files
-    allProducts = [...productsIndia, ...productsIndia2];
-} catch (e) {
-    // If productsIndia2 isn't loaded, just use productsIndia
+
+// Try to load products from localStorage first (for offline use)
+const storedProducts = localStorage.getItem('amaCloneProducts');
+if (storedProducts) {
+    allProducts = JSON.parse(storedProducts);
+} else {
+    // If not in localStorage, load from JS files
     try {
-        allProducts = [...productsIndia];
-    } catch (err) {
-        console.error("Product data could not be loaded", err);
-        allProducts = [];
+        // First try to get products from both Indian files
+        allProducts = [...productsIndia, ...productsIndia2];
+    } catch (e) {
+        // If productsIndia2 isn't loaded, just use productsIndia
+        try {
+            allProducts = [...productsIndia];
+        } catch (err) {
+            // If productsIndia isn't loaded, try regular products
+            try {
+                allProducts = [...products, ...products2];
+            } catch (error) {
+                try {
+                    allProducts = [...products];
+                } catch (finalError) {
+                    console.error("Product data could not be loaded", finalError);
+                    allProducts = [];
+                }
+            }
+        }
+    }
+    
+    // Save to localStorage for offline use
+    if (allProducts.length > 0) {
+        localStorage.setItem('amaCloneProducts', JSON.stringify(allProducts));
     }
 }
 

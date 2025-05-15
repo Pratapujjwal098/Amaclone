@@ -6,6 +6,11 @@
     <title>AmaClone - India's Shopping Destination</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#131921">
+    <!-- iOS support -->
+    <link rel="apple-touch-icon" href="Images/logo-192.png">
+    <meta name="apple-mobile-web-app-status-bar" content="#131921">
     <style>
         /* Enhanced Styles for Header */
         .header-container {
@@ -658,7 +663,7 @@
         </div>
         
         <div class="footer-bottom">
-            <p>&copy; 2025 AmaClone India. All Rights Reserved.@Tahsin Raza</p>
+            <p>&copy; 2025 AmaClone India. All Rights Reserved.</p>
         </div>
     </footer>
 
@@ -706,6 +711,17 @@
                 });
             });
         });
+    </script>
+    
+    <script>
+        // Register service worker for offline functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('Service Worker registered successfully'))
+                    .catch(err => console.log('Service Worker registration failed', err));
+            });
+        }
     </script>
 </body>
 </html>

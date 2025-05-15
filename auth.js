@@ -211,7 +211,7 @@ const userManager = {
         const initialLength = this.currentUser.wishlist.length;
         const updatedWishlist = this.currentUser.wishlist.filter(item => item.productId !== productId);
         
-        if (this.currentUser.wishlist.length === initialLength) {
+        if (updatedWishlist.length === initialLength) {
             return {
                 success: false,
                 message: 'Item not found in wishlist'
@@ -305,17 +305,19 @@ const userManager = {
         }
         
         // Add the address
-        this.currentUser.addresses.push(address);
+        const updatedAddresses = [...this.currentUser.addresses, address];
         
         // Update in storage
-        const userIndex = this.users.findIndex(user => user.id === this.currentUser.id);
-        this.users[userIndex] = this.currentUser;
-        this.saveUsers();
+        const result = this.updateProfile({ addresses: updatedAddresses });
         
-        return {
-            success: true,
-            message: 'Address added successfully'
-        };
+        if (result.success) {
+            return {
+                success: true,
+                message: 'Address added successfully'
+            };
+        } else {
+            return result;
+        }
     },
     
     // Get orders
@@ -479,9 +481,9 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (result.success) {
                 notificationSystem.success(result.message);
-                // Redirect to login page after successful registration
+                // Redirect to account page after successful registration
                 setTimeout(() => {
-                    window.location.href = 'login.html';
+                    window.location.href = 'account.html';
                 }, 1500);
             } else {
                 notificationSystem.error(result.message);
@@ -748,21 +750,19 @@ function updateAuthUI() {
             }
             
             .sign-in-section .btn {
+                display: block;
                 width: 100%;
-                margin-bottom: 8px;
-            }
-            
-            .sign-in-section p {
-                font-size: 12px;
+                margin-bottom: 10px;
             }
             
             .dropdown-footer {
+                padding-top: 10px;
                 text-align: center;
             }
             
             .dropdown-footer a {
+                font-size: 12px;
                 color: #0066c0;
-                font-size: 14px;
                 text-decoration: none;
             }
             
@@ -770,26 +770,20 @@ function updateAuthUI() {
                 text-decoration: underline;
                 color: #c45500;
             }
-            
-            .wishlist-btn {
-                margin-top: 10px;
-                background-color: #f0f2f2;
-                border: 1px solid #d5d9d9;
-                color: #0f1111;
-            }
-            
-            .wishlist-btn:hover {
-                background-color: #e7e9ec;
-            }
         `;
+        
         document.head.appendChild(style);
     }
+    
+    // Create a global window.showNotification function for components that need it
+    if (typeof window.showNotification !== 'function') {
+        window.showNotification = function(message, type = 'info', duration = 5000) {
+            if (notificationSystem) {
+                notificationSystem.show(message, type, duration);
+            }
+        };
+    }
 }
-
-// Export the notification system for use in other scripts
-window.showNotification = function(message, type, duration) {
-    notificationSystem.show(message, type, duration);
-};
 
 // Allow access to user manager
 window.userManager = userManager;
