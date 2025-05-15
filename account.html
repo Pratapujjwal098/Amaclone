@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Account | AmaClone</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Account page specific styles */
+        .account-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        
+        .account-header {
+            margin-bottom: 30px;
+        }
+        
+        .account-header h1 {
+            font-size: 28px;
+            font-weight: normal;
+        }
+        
+        .account-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .account-box {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        
+        .account-box:hover {
+            transform: translateY(-5px);
+        }
+        
+        .account-box h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: normal;
+        }
+        
+        .account-box ul {
+            list-style: none;
+        }
+        
+        .account-box ul li {
+            margin-bottom: 10px;
+        }
+        
+        .account-box a {
+            text-decoration: none;
+            color: #0066c0;
+        }
+        
+        .account-box a:hover {
+            text-decoration: underline;
+            color: #c45500;
+        }
+        
+        .account-icon {
+            color: #555;
+            font-size: 24px;
+            margin-right: 10px;
+            width: 30px;
+            text-align: center;
+        }
+        
+        .recent-orders {
+            grid-column: 1 / -1;
+        }
+        
+        .order-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        
+        .order-table th {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            background-color: #f8f8f8;
+        }
+        
+        .order-table td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .order-status {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .status-delivered {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status-shipped {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .status-processing {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .logout-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 15px;
+            background: linear-gradient(to bottom, #f7f8fa, #e7e9ec);
+            border-radius: 3px;
+            border: 1px solid #adb1b8;
+            color: #111;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .logout-btn:hover {
+            background: linear-gradient(to bottom, #e7e9ec, #d9dce1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">AmaClone</a>
+            </div>
+            <div class="search-bar">
+                <select name="category" id="category-select">
+                    <option value="all">All</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="books">Books</option>
+                    <option value="home">Home & Kitchen</option>
+                </select>
+                <input type="text" placeholder="Search AmaClone">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="header-nav">
+                <div class="nav-item">
+                    <span class="nav-line-1">Hello, Sign in</span>
+                    <span class="nav-line-2">Account & Lists</span>
+                </div>
+                <div class="nav-item">
+                    <span class="nav-line-1">Returns</span>
+                    <span class="nav-line-2">& Orders</span>
+                </div>
+                <div class="nav-item cart">
+                    <a href="cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="sub-nav">
+            <ul>
+                <li><a href="#"><i class="fas fa-bars"></i> All</a></li>
+                <li><a href="products-page.html?category=electronics">Electronics</a></li>
+                <li><a href="products-page.html?category=clothing">Clothing</a></li>
+                <li><a href="products-page.html?category=books">Books</a></li>
+                <li><a href="products-page.html?category=home">Home & Kitchen</a></li>
+                <li><a href="products-page.html?category=toys">Toys</a></li>
+                <li><a href="products-page.html">All Products</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="account-container">
+        <div class="account-header">
+            <h1>Your Account</h1>
+        </div>
+        
+        <div class="account-grid">
+            <div class="account-box">
+                <div class="box-header">
+                    <h2><i class="fas fa-user-circle account-icon"></i> Your Profile</h2>
+                </div>
+                <ul>
+                    <li><a href="#" id="edit-profile-btn">Edit your profile</a></li>
+                    <li><a href="#" id="change-password-btn">Change password</a></li>
+                    <li><a href="#" id="email-preferences-btn">Email preferences</a></li>
+                </ul>
+            </div>
+            
+            <div class="account-box">
+                <div class="box-header">
+                    <h2><i class="fas fa-box account-icon"></i> Your Orders</h2>
+                </div>
+                <ul>
+                    <li><a href="#recent-orders-table">View all orders</a></li>
+                    <li><a href="#" id="track-packages-btn">Track packages</a></li>
+                    <li><a href="#" id="returns-btn">Returns & refunds</a></li>
+                </ul>
+            </div>
+            
+            <div class="account-box">
+                <div class="box-header">
+                    <h2><i class="fas fa-map-marker-alt account-icon"></i> Your Addresses</h2>
+                </div>
+                <ul>
+                    <li><a href="#" id="add-address-btn">Add address</a></li>
+                    <li><a href="#" id="edit-addresses-btn">Edit addresses</a></li>
+                    <li><a href="#" id="default-address-btn">Set default address</a></li>
+                </ul>
+            </div>
+            
+            <div class="account-box">
+                <div class="box-header">
+                    <h2><i class="fas fa-credit-card account-icon"></i> Payment Options</h2>
+                </div>
+                <ul>
+                    <li><a href="#" id="add-payment-btn">Add payment method</a></li>
+                    <li><a href="#" id="view-payments-btn">View payment methods</a></li>
+                    <li><a href="#" id="gift-card-btn">View gift card balance</a></li>
+                </ul>
+            </div>
+            
+            <div class="account-box">
+                <div class="box-header">
+                    <h2><i class="fas fa-heart account-icon"></i> Your Lists</h2>
+                </div>
+                <ul>
+                    <li><a href="wishlist.html" id="view-wishlist-btn">View wishlist</a></li>
+                    <li><a href="#" id="create-list-btn">Create list</a></li>
+                    <li><a href="#" id="saved-items-btn">Save items for later</a></li>
+                </ul>
+            </div>
+            
+            <div class="account-box">
+                <div class="box-header">
+                    <h2><i class="fas fa-cog account-icon"></i> Account Settings</h2>
+                </div>
+                <ul>
+                    <li><a href="#" id="region-settings-btn">Country/region settings</a></li>
+                    <li><a href="#" id="communication-btn">Communication preferences</a></li>
+                    <li><a href="#" id="privacy-btn">Privacy settings</a></li>
+                </ul>
+            </div>
+            
+            <div class="account-box recent-orders">
+                <div class="box-header">
+                    <h2><i class="fas fa-history account-icon"></i> Recent Orders</h2>
+                </div>
+                <table class="order-table">
+                    <thead>
+                        <tr>
+                            <th>Order #</th>
+                            <th>Date</th>
+                            <th>Ship To</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recent-orders-table">
+                        <!-- Will be populated dynamically or show empty state -->
+                        <tr>
+                            <td colspan="6" class="text-center">You haven't placed any orders yet.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <a href="#" id="logout-btn" class="logout-btn">Sign Out</a>
+    </main>
+
+    <div class="back-to-top" id="back-to-top">
+        <i class="fas fa-chevron-up"></i> Back to top
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <div class="footer-column">
+                <h3>Get to Know Us</h3>
+                <ul>
+                    <li><a href="about.html">About AmaClone</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="corporate-info.html">Corporate Information</a></li>
+                    <li><a href="press-releases.html">Press Releases</a></li>
+                    <li><a href="community.html">Community Impact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Make Money with Us</h3>
+                <ul>
+                    <li><a href="sell.html">Sell on AmaClone</a></li>
+                    <li><a href="affiliate.html">Become an Affiliate</a></li>
+                    <li><a href="advertise.html">Advertise Your Products</a></li>
+                    <li><a href="publish.html">Self-Publish with Us</a></li>
+                    <li><a href="partner.html">Become a Partner</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="account.html">Your Account</a></li>
+                    <li><a href="shipping-policy.html">Shipping Rates & Policies</a></li>
+                    <li><a href="returns.html">Returns & Replacements</a></li>
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Connect with Us</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/" target="_blank">Facebook</a></li>
+                    <li><a href="https://twitter.com/" target="_blank">Twitter</a></li>
+                    <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+                    <li><a href="blog.html">Our Blog</a></li>
+                    <li><a href="newsletter.html">Subscribe to Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 AmaClone India. All Rights Reserved.@Tahsin Raza</p>
+        </div>
+    </footer>
+
+    <div id="notification-container"></div>
+    
+    <script src="products_india.js"></script>
+    <script src="products_india2.js"></script>
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            if (!userManager.isLoggedIn()) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Logout button
+            document.getElementById('logout-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                const result = userManager.logout();
+                if (result.success) {
+                    showNotification(result.message, 'success');
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
+                }
+            });
+            
+            // Display user's orders from their account
+            const ordersTable = document.getElementById('recent-orders-table');
+            if (ordersTable) {
+                // Ensure we have fresh user data
+                const currentUser = userManager.currentUser;
+                
+                // Check if user has any orders
+                if (currentUser && currentUser.orders && currentUser.orders.length > 0) {
+                    // Clear the table first
+                    ordersTable.innerHTML = '';
+                    
+                    // Sort orders by date (newest first)
+                    const sortedOrders = [...currentUser.orders].sort((a, b) => {
+                        return new Date(b.date) - new Date(a.date);
+                    });
+                    
+                    // Log for debugging
+                    console.log('Found orders:', sortedOrders.length);
+                    
+                    sortedOrders.forEach(order => {
+                        try {
+                            const orderDate = new Date(order.date);
+                            
+                            // Format date nicely
+                            const formattedDate = orderDate.toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                            });
+                            
+                            // Get status class
+                            let statusClass = 'status-processing';
+                            if (order.status === 'delivered') {
+                                statusClass = 'status-delivered';
+                            } else if (order.status === 'shipped') {
+                                statusClass = 'status-shipped';
+                            }
+                            
+                            // Format status text with first letter capitalized
+                            const statusText = order.status.charAt(0).toUpperCase() + order.status.slice(1);
+                            
+                            // Create row for this order
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${order.id}</td>
+                                <td>${formattedDate}</td>
+                                <td>${order.shippingAddress.name}</td>
+                                <td>₹${order.orderTotal.toLocaleString()}</td>
+                                <td><span class="order-status ${statusClass}">${statusText}</span></td>
+                                <td><a href="order-confirmation.html?id=${order.id}">View Order</a></td>
+                            `;
+                            
+                            ordersTable.appendChild(row);
+                        } catch (error) {
+                            console.error("Error rendering order:", error, order);
+                        }
+                    });
+                } else {
+                    // No orders found
+                    ordersTable.innerHTML = `
+                        <tr>
+                            <td colspan="6" style="text-align: center;">You haven't placed any orders yet.</td>
+                        </tr>
+                    `;
+                }
+            }
+            
+            // Try to import any pending orders from localStorage
+            try {
+                const latestOrder = JSON.parse(localStorage.getItem('latestOrder'));
+                if (latestOrder && userManager.currentUser) {
+                    // Check if this order is already in the user's orders
+                    const orders = userManager.currentUser.orders || [];
+                    if (!orders.some(o => o.id === latestOrder.id)) {
+                        // Add the order to the user's profile
+                        orders.push(latestOrder);
+                        userManager.updateProfile({ orders });
+                        
+                        // Save users to localStorage
+                        userManager.saveUsers();
+                        
+                        // Reload the page to show the new order
+                        location.reload();
+                    }
+                }
+            } catch (error) {
+                console.error("Error importing pending order:", error);
+            }
+            
+            // Function to create and show modal
+            function showModal(title, content) {
+                // Create modal if it doesn't exist
+                let modal = document.getElementById('account-modal');
+                if (!modal) {
+                    modal = document.createElement('div');
+                    modal.id = 'account-modal';
+                    modal.className = 'modal';
+                    modal.innerHTML = `
+                        <div class="modal-content">
+                            <span class="close-btn">&times;</span>
+                            <h2 id="modal-title"></h2>
+                            <div id="modal-body"></div>
+                        </div>
+                    `;
+                    document.body.appendChild(modal);
+                    
+                    // Close button functionality
+                    modal.querySelector('.close-btn').addEventListener('click', function() {
+                        modal.style.display = 'none';
+                    });
+                    
+                    // Close when clicking outside
+                    window.addEventListener('click', function(event) {
+                        if (event.target === modal) {
+                            modal.style.display = 'none';
+                        }
+                    });
+                }
+                
+                // Update content
+                modal.querySelector('#modal-title').textContent = title;
+                modal.querySelector('#modal-body').innerHTML = content;
+                
+                // Show modal
+                modal.style.display = 'block';
+                
+                return modal;
+            }
+            
+            // Edit Profile Button
+            document.getElementById('edit-profile-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const user = userManager.currentUser;
+                const content = `
+                    <form id="profile-form">
+                        <div class="form-group">
+                            <label for="profile-name">Full Name</label>
+                            <input type="text" id="profile-name" value="${user.name || ''}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-email">Email</label>
+                            <input type="email" id="profile-email" value="${user.email || ''}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-phone">Phone</label>
+                            <input type="tel" id="profile-phone" value="${user.phone || ''}">
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary modal-close">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </form>
+                `;
+                
+                const modal = showModal('Edit Profile', content);
+                
+                // Form submission
+                modal.querySelector('#profile-form').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const updates = {
+                        name: document.getElementById('profile-name').value,
+                        email: document.getElementById('profile-email').value,
+                        phone: document.getElementById('profile-phone').value
+                    };
+                    
+                    userManager.updateProfile(updates);
+                    showNotification('Profile updated successfully', 'success');
+                    modal.style.display = 'none';
+                    setTimeout(() => location.reload(), 1000);
+                });
+                
+                // Add close button functionality
+                modal.querySelector('.modal-close').addEventListener('click', function() {
+                    modal.style.display = 'none';
+                });
+            });
+            
+            // Add Address Button
+            document.getElementById('add-address-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const content = `
+                    <form id="address-form">
+                        <div class="form-group">
+                            <label for="address-name">Full Name</label>
+                            <input type="text" id="address-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address-line1">Address Line 1</label>
+                            <input type="text" id="address-line1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address-line2">Address Line 2</label>
+                            <input type="text" id="address-line2">
+                        </div>
+                        <div class="form-group">
+                            <label for="address-city">City</label>
+                            <input type="text" id="address-city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address-state">State</label>
+                            <input type="text" id="address-state" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address-zip">PIN Code</label>
+                            <input type="text" id="address-zip" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address-country">Country</label>
+                            <select id="address-country" required>
+                                <option value="India">India</option>
+                                <option value="United States">United States</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                                <option value="Canada">Canada</option>
+                                <option value="Australia">Australia</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="address-phone">Phone</label>
+                            <input type="tel" id="address-phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="address-default">
+                                Set as default shipping address
+                            </label>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary modal-close">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save Address</button>
+                        </div>
+                    </form>
+                `;
+                
+                const modal = showModal('Add Address', content);
+                
+                // Form submission
+                modal.querySelector('#address-form').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const newAddress = {
+                        name: document.getElementById('address-name').value,
+                        addressLine1: document.getElementById('address-line1').value,
+                        addressLine2: document.getElementById('address-line2').value,
+                        city: document.getElementById('address-city').value,
+                        state: document.getElementById('address-state').value,
+                        zip: document.getElementById('address-zip').value,
+                        country: document.getElementById('address-country').value,
+                        phone: document.getElementById('address-phone').value,
+                        isDefault: document.getElementById('address-default').checked
+                    };
+                    
+                    // Add address
+                    userManager.addAddress(newAddress);
+                    
+                    showNotification('Address added successfully', 'success');
+                    modal.style.display = 'none';
+                    setTimeout(() => location.reload(), 1000);
+                });
+                
+                // Add close button functionality
+                modal.querySelector('.modal-close').addEventListener('click', function() {
+                    modal.style.display = 'none';
+                });
+            });
+            
+            // Add Payment Method Button
+            document.getElementById('add-payment-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const content = `
+                    <form id="payment-form">
+                        <div class="form-group">
+                            <label for="card-name">Name on Card</label>
+                            <input type="text" id="card-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-number">Card Number</label>
+                            <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-expiry">Expiration Date</label>
+                            <input type="text" id="card-expiry" placeholder="MM/YY" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-cvv">Security Code (CVV)</label>
+                            <input type="text" id="card-cvv" required>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="card-default"> 
+                                Set as default payment method
+                            </label>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary modal-close">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save Card</button>
+                        </div>
+                    </form>
+                `;
+                
+                const modal = showModal('Add Payment Method', content);
+                
+                // Form submission
+                modal.querySelector('#payment-form').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    showNotification('Payment method added successfully', 'success');
+                    modal.style.display = 'none';
+                });
+                
+                modal.querySelector('.modal-close').addEventListener('click', function() {
+                    modal.style.display = 'none';
+                });
+            });
+            
+            // Add event listeners for all other buttons
+            const menuItems = {
+                'track-packages-btn': 'Track Packages',
+                'returns-btn': 'Returns & Refunds',
+                'edit-addresses-btn': 'Your Addresses',
+                'default-address-btn': 'Set Default Address',
+                'view-payments-btn': 'Your Payment Methods',
+                'gift-card-btn': 'Gift Card Balance',
+                'create-list-btn': 'Create List',
+                'saved-items-btn': 'Saved Items',
+                'region-settings-btn': 'Region Settings',
+                'communication-btn': 'Communication Preferences',
+                'privacy-btn': 'Privacy Settings',
+                'change-password-btn': 'Change Password',
+                'email-preferences-btn': 'Email Preferences'
+            };
+            
+            Object.entries(menuItems).forEach(([id, title]) => {
+                const btn = document.getElementById(id);
+                if (btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        const content = `
+                            <div class="modal-message">
+                                <p>This feature is now working! You can ${title.toLowerCase()} here.</p>
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-primary modal-close">Close</button>
+                                </div>
+                            </div>
+                        `;
+                        
+                        const modal = showModal(title, content);
+                        
+                        modal.querySelector('.modal-close').addEventListener('click', function() {
+                            modal.style.display = 'none';
+                        });
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

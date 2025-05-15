@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart | AmaClone</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Cart Page Specific Styles */
+        .cart-container {
+            max-width: 1300px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 70% 30%;
+            gap: 20px;
+        }
+        
+        @media (max-width: 900px) {
+            .cart-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .cart-heading {
+            font-size: 28px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 15px;
+        }
+        
+        .cart-items {
+            background-color: white;
+            padding: 20px;
+            border-radius: 4px;
+        }
+        
+        .item-list {
+            margin-top: 10px;
+        }
+        
+        .cart-item {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 20px;
+            border-bottom: 1px solid #ddd;
+            padding: 20px 0;
+        }
+        
+        .cart-item-image img {
+            width: 100%;
+            max-height: 120px;
+            object-fit: contain;
+        }
+        
+        .cart-item-details h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .cart-item-details h3 a {
+            color: #0066c0;
+            text-decoration: none;
+        }
+        
+        .cart-item-details h3 a:hover {
+            color: #c45500;
+            text-decoration: underline;
+        }
+        
+        .item-stock {
+            color: #007600;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .item-actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .quantity-dropdown {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        
+        .action-link {
+            color: #0066c0;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        
+        .action-link:hover {
+            color: #c45500;
+            text-decoration: underline;
+        }
+        
+        .item-price {
+            font-weight: bold;
+            font-size: 18px;
+            text-align: right;
+        }
+        
+        .cart-subtotal {
+            text-align: right;
+            font-size: 18px;
+            padding: 20px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .cart-summary {
+            background-color: white;
+            padding: 20px;
+            border-radius: 4px;
+        }
+        
+        .summary-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .checkout-button {
+            background-color: #ffd814;
+            border: none;
+            padding: 10px 0;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .checkout-button:hover {
+            background-color: #f7ca00;
+        }
+        
+        .gift-option {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .gift-option input {
+            margin-right: 10px;
+        }
+        
+        .empty-cart {
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .empty-cart h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .empty-cart p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .shop-now-btn {
+            background-color: #ffd814;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        .shop-now-btn:hover {
+            background-color: #f7ca00;
+        }
+        
+        .cart-recommendations {
+            margin-top: 30px;
+        }
+        
+        .recommendations-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .recommendations-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .recommendation-item {
+            padding: 10px;
+            background-color: white;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .recommendation-image {
+            width: 100%;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .recommendation-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .recommendation-title {
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .recommendation-price {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .add-to-cart {
+            background-color: #ffd814;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #f7ca00;
+        }
+        
+        .cart-item-price {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .cart-item-quantity select {
+            margin: 0 10px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+        
+        .cart-item-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .cart-item-actions a {
+            color: #0066c0;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .cart-item-actions a:hover {
+            color: #c45500;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">AmaClone</a>
+            </div>
+            <div class="search-bar">
+                <select name="category" id="category-select">
+                    <option value="all">All</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="books">Books</option>
+                    <option value="home">Home & Kitchen</option>
+                </select>
+                <input type="text" placeholder="Search AmaClone">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="header-nav">
+                <div class="nav-item">
+                    <span class="nav-line-1">Hello, Sign in</span>
+                    <span class="nav-line-2">Account & Lists</span>
+                </div>
+                <div class="nav-item">
+                    <a href="account.html">
+                        <span class="nav-line-1">Returns</span>
+                        <span class="nav-line-2">& Orders</span>
+                    </a>
+                </div>
+                <div class="nav-item cart">
+                    <a href="cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="sub-nav">
+            <ul>
+                <li><a href="#"><i class="fas fa-bars"></i> All</a></li>
+                <li><a href="products-page.html?category=electronics">Electronics</a></li>
+                <li><a href="products-page.html?category=clothing">Clothing</a></li>
+                <li><a href="products-page.html?category=books">Books</a></li>
+                <li><a href="products-page.html?category=home">Home & Kitchen</a></li>
+                <li><a href="products-page.html?category=toys">Toys</a></li>
+                <li><a href="products-page.html">All Products</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="cart-container">
+        <h1>Shopping Cart</h1>
+
+        <div class="cart-content">
+            <div class="cart-items" id="cart-items">
+                <div id="empty-cart-message" class="empty-cart-message">
+                    <div class="empty-cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h2>Your AmaClone Cart is empty</h2>
+                    <p><a href="index.html">Continue shopping</a> on the AmaClone homepage</p>
+                </div>
+                <!-- Cart items will be dynamically loaded here -->
+            </div>
+
+            <div class="cart-summary">
+                <div class="summary-box">
+                    <div class="subtotal">
+                        <span>Subtotal (<span id="cart-item-count">0</span> items):</span>
+                        <span id="cart-subtotal">₹0.00</span>
+                    </div>
+                    
+                    <div class="cart-gift">
+                        <input type="checkbox" id="gift-checkbox">
+                        <label for="gift-checkbox">This order contains a gift</label>
+                    </div>
+                    
+                    <button id="checkout-button" class="btn checkout-btn" onclick="window.location.href='checkout.html'">Proceed to checkout</button>
+                    <button id="clear-cart-button" class="btn" style="margin-top: 10px; background-color: #f0f2f2; border: 1px solid #d5d9d9;">Clear cart</button>
+                </div>
+
+                <div class="saved-items">
+                    <h3>Saved for later (<span id="saved-count">0</span>)</h3>
+                    <div id="saved-items-container">
+                        <!-- Saved items will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="cart-recommendations">
+            <h2>Recommended based on your shopping cart</h2>
+            <div class="product-grid" id="cart-recommendations">
+                <!-- Recommended products will be loaded here -->
+            </div>
+        </section>
+    </main>
+
+    <div class="back-to-top" id="back-to-top">
+        <i class="fas fa-chevron-up"></i> Back to top
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <div class="footer-column">
+                <h3>Get to Know Us</h3>
+                <ul>
+                    <li><a href="about.html">About AmaClone</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="corporate-info.html">Corporate Information</a></li>
+                    <li><a href="press-releases.html">Press Releases</a></li>
+                    <li><a href="community.html">Community Impact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Make Money with Us</h3>
+                <ul>
+                    <li><a href="sell.html">Sell on AmaClone</a></li>
+                    <li><a href="affiliate.html">Become an Affiliate</a></li>
+                    <li><a href="advertise.html">Advertise Your Products</a></li>
+                    <li><a href="publish.html">Self-Publish with Us</a></li>
+                    <li><a href="partner.html">Become a Partner</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="account.html">Your Account</a></li>
+                    <li><a href="shipping-policy.html">Shipping Rates & Policies</a></li>
+                    <li><a href="returns.html">Returns & Replacements</a></li>
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Connect with Us</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/" target="_blank">Facebook</a></li>
+                    <li><a href="https://twitter.com/" target="_blank">Twitter</a></li>
+                    <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+                    <li><a href="blog.html">Our Blog</a></li>
+                    <li><a href="newsletter.html">Subscribe to Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 AmaClone India. All Rights Reserved.@Tahsin Raza</p>
+        </div>
+    </footer>
+
+    <div id="notification-container"></div>
+    
+    <script src="products_india.js"></script>
+    <script src="products_india2.js"></script>
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html> 

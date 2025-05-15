@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation | AmaClone</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Order confirmation specific styles */
+        .confirmation-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        
+        .confirmation-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .confirmation-header i {
+            color: #007600;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .confirmation-header h1 {
+            font-size: 28px;
+            font-weight: normal;
+            margin-bottom: 10px;
+        }
+        
+        .confirmation-header p {
+            font-size: 16px;
+            color: #565959;
+        }
+        
+        .confirmation-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .confirmation-section h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: normal;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        
+        .order-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 576px) {
+            .order-details {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .detail-group {
+            margin-bottom: 15px;
+        }
+        
+        .detail-label {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .detail-value {
+            font-size: 16px;
+        }
+        
+        .order-items {
+            margin-top: 20px;
+        }
+        
+        .order-item {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        
+        .order-item-image {
+            width: 80px;
+            margin-right: 15px;
+        }
+        
+        .order-item-image img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .order-item-details {
+            flex: 1;
+        }
+        
+        .order-item-title {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .order-item-price {
+            font-weight: bold;
+        }
+        
+        .order-item-quantity {
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .order-summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .action-button {
+            padding: 10px 20px;
+            background-color: #f0f2f2;
+            border: 1px solid #d5d9d9;
+            border-radius: 8px;
+            text-align: center;
+            color: #0f1111;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .action-button:hover {
+            background-color: #e7e9ec;
+        }
+        
+        .action-button.primary {
+            background-color: #ffd814;
+            border-color: #ffd814;
+        }
+        
+        .action-button.primary:hover {
+            background-color: #f7ca00;
+        }
+        
+        .delivery-estimate {
+            background-color: #f0f2f2;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        
+        .delivery-date {
+            font-weight: bold;
+            color: #007600;
+        }
+        
+        .help-box {
+            background-color: #f6f6f6;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 30px;
+        }
+        
+        .help-box h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .help-box p {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .help-box a {
+            color: #0066c0;
+            text-decoration: none;
+        }
+        
+        .help-box a:hover {
+            text-decoration: underline;
+            color: #c45500;
+        }
+        
+        /* Add styles for gift section */
+        .gift-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+            grid-column: 1 / -1;
+        }
+        
+        .gift-icon {
+            color: #e91e63;
+            margin-bottom: 5px;
+        }
+        
+        .gift-icon i {
+            margin-right: 5px;
+        }
+        
+        .gift-message {
+            font-style: italic;
+            color: #666;
+            margin: 5px 0;
+            padding: 5px 10px;
+            background-color: #f9f9f9;
+            border-left: 3px solid #e91e63;
+        }
+        
+        .gift-wrap {
+            color: #4caf50;
+            margin-top: 5px;
+        }
+        
+        .order-item-total {
+            font-weight: bold;
+            color: #b12704;
+            margin-top: 5px;
+        }
+        
+        .payment-method-icon {
+            display: inline-block;
+            margin-right: 5px;
+            font-size: 18px;
+            vertical-align: middle;
+        }
+        
+        /* Print styles */
+        @page {
+            size: auto;
+            margin: 10mm;
+        }
+        
+        @media print {
+            header, footer, .action-buttons, .help-box, .recommendations-section {
+                display: none;
+            }
+            
+            body {
+                background-color: white;
+                color: black;
+            }
+            
+            .confirmation-container {
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .confirmation-section {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                page-break-inside: avoid;
+                margin-bottom: 15px;
+            }
+            
+            .invoice-title {
+                display: block !important;
+                text-align: center;
+                font-size: 24px;
+                margin-bottom: 20px;
+                border-bottom: 2px solid #000;
+                padding-bottom: 10px;
+            }
+            
+            .customer-info {
+                border: 1px solid #ddd;
+                padding: 10px;
+                margin-bottom: 20px;
+                page-break-inside: avoid;
+            }
+            
+            .print-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                margin-bottom: 20px;
+                page-break-inside: avoid;
+            }
+            
+            .billing-info {
+                padding-right: 10px;
+            }
+            
+            .print-footer {
+                display: block !important;
+                margin-top: 30px;
+                text-align: center;
+                font-size: 12px;
+                color: #666;
+                page-break-inside: avoid;
+            }
+            
+            /* Make sure all important order details are visible */
+            .order-status, .order-timestamp, .detail-value, .detail-label {
+                color: black !important;
+                display: block;
+            }
+            
+            /* Ensure order items have proper spacing */
+            .order-item {
+                border-bottom: 1px solid #eee;
+                padding-bottom: 15px;
+                margin-bottom: 15px;
+                page-break-inside: avoid;
+            }
+            
+            /* Make sure all order totals are visible */
+            .order-summary-calculations {
+                border-top: 1px solid #ddd;
+                margin-top: 20px;
+                padding-top: 15px;
+                page-break-inside: avoid;
+            }
+            
+            /* Improve invoice header appearance */
+            .confirmation-header {
+                display: none;
+            }
+        }
+        
+        .product-heading {
+            font-size: 18px;
+            margin: 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .order-timestamp {
+            font-size: 14px;
+            color: #555;
+            margin-top: 5px;
+        }
+        
+        .invoice-title {
+            display: none;
+        }
+        
+        .order-status {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            background-color: #cce5ff;
+            color: #004085;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .print-footer {
+            display: none;
+        }
+        
+        .customer-info {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .billing-info, .company-info {
+            margin-bottom: 15px;
+        }
+        
+        .customer-info h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        
+        .download-invoice {
+            margin-left: 10px;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: #232f3e;
+            color: #fff;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+            padding: 0 15px;
+        }
+        
+        .footer-column h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        
+        .footer-column a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 20px;
+            border-top: 1px solid #3a4553;
+            font-size: 12px;
+        }
+        
+        /* Social Media Icons */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #37475a;
+            margin: 0 8px;
+            color: #fff;
+            transition: background-color 0.2s;
+        }
+        
+        .social-links a:hover {
+            background-color: #4d5e75;
+        }
+        
+        /* Responsive Footer */
+        @media (max-width: 768px) {
+            .footer-links {
+                flex-direction: column;
+                padding: 0 30px;
+            }
+            
+            .footer-column {
+                margin-bottom: 30px;
+                padding: 0;
+            }
+            
+            .footer-column:last-child {
+                margin-bottom: 20px;
+            }
+            
+            .footer-column h3 {
+                cursor: pointer;
+                position: relative;
+                padding-bottom: 10px;
+                border-bottom: 1px solid #3a4553;
+            }
+            
+            .footer-column h3:after {
+                content: '\f078';
+                font-family: 'Font Awesome 5 Free';
+                font-weight: 900;
+                position: absolute;
+                right: 0;
+                top: 0;
+                font-size: 12px;
+            }
+            
+            .footer-column.active h3:after {
+                content: '\f077';
+            }
+            
+            .footer-column ul {
+                display: none;
+                padding-top: 10px;
+            }
+            
+            .footer-column.active ul {
+                display: block;
+            }
+        }
+        
+        /* Order item actions */
+        .order-item-actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .buy-again-btn, .write-review-btn {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #f0f2f2;
+            border: 1px solid #d5d9d9;
+            border-radius: 4px;
+            color: #0f1111;
+            text-decoration: none;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+        
+        .buy-again-btn:hover, .write-review-btn:hover {
+            background-color: #e7e9ec;
+        }
+        
+        .buy-again-btn {
+            background-color: #febd69;
+            border-color: #febd69;
+        }
+        
+        .buy-again-btn:hover {
+            background-color: #f3a847;
+        }
+        
+        /* Review modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: #000;
+        }
+        
+        #review-form .form-group {
+            margin-bottom: 15px;
+        }
+        
+        #review-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        #review-form input, #review-form textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        #review-form button {
+            background-color: #ffd814;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        #review-form button:hover {
+            background-color: #f7ca00;
+        }
+        
+        .rating-input {
+            display: inline-block;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .rating-input i {
+            margin-right: 5px;
+            color: #ccc;
+        }
+        
+        .rating-input i.active {
+            color: #ffc107;
+        }
+        
+        /* Make product links look like links */
+        .order-item-title a {
+            color: #0066c0;
+            text-decoration: none;
+        }
+        
+        .order-item-title a:hover {
+            color: #c45500;
+            text-decoration: underline;
+        }
+        
+        /* Add print button */
+        .print-icon {
+            margin-right: 5px;
+        }
+        
+        /* Order-related action buttons at page bottom */
+        .order-help-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .order-help-button {
+            padding: 8px 15px;
+            background-color: #f0f2f2;
+            border: 1px solid #d5d9d9;
+            border-radius: 4px;
+            color: #0f1111;
+            text-decoration: none;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .order-help-button i {
+            margin-right: 5px;
+        }
+        
+        .order-help-button:hover {
+            background-color: #e7e9ec;
+        }
+        
+        /* Help box improvements */
+        .help-box a {
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .help-box a i {
+            margin-right: 8px;
+            width: 16px;
+            text-align: center;
+        }
+        
+        /* Product recommendations */
+        .recommendations-section {
+            margin-top: 30px;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .product-card {
+            border: 1px solid #e3e3e3;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-card-image {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .product-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .product-discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #cc0c39;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .product-card-content {
+            padding: 12px;
+        }
+        
+        .product-card-title {
+            font-size: 14px;
+            margin-bottom: 8px;
+            height: 40px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        
+        .product-card-title a {
+            color: #0f1111;
+            text-decoration: none;
+        }
+        
+        .product-card-title a:hover {
+            color: #c45500;
+        }
+        
+        .product-card-price {
+            font-weight: bold;
+            font-size: 18px;
+            color: #b12704;
+        }
+        
+        .product-card-rating {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+        }
+        
+        .product-card-rating .stars {
+            color: #ffa41c;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+        
+        .product-card-rating .review-count {
+            font-size: 12px;
+            color: #565959;
+        }
+        
+        .product-card-cta {
+            margin-top: 12px;
+        }
+        
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 8px 0;
+            background-color: #ffd814;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: background-color 0.2s;
+        }
+        
+        .add-to-cart-btn:hover {
+            background-color: #f7ca00;
+        }
+        
+        /* Hide recommendations in print */
+        @media print {
+            .recommendations-section {
+                display: none;
+            }
+        }
+        
+        /* Responsive adjustments for recommendations */
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">AmaClone</a>
+            </div>
+            <div class="search-bar">
+                <select name="category" id="category-select">
+                    <option value="all">All</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="books">Books</option>
+                    <option value="home">Home & Kitchen</option>
+                </select>
+                <input type="text" placeholder="Search AmaClone">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="header-nav">
+                <div class="nav-item">
+                    <span class="nav-line-1">Hello, Sign in</span>
+                    <span class="nav-line-2">Account & Lists</span>
+                </div>
+                <div class="nav-item">
+                    <span class="nav-line-1">Returns</span>
+                    <span class="nav-line-2">& Orders</span>
+                </div>
+                <div class="nav-item cart">
+                    <a href="cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="sub-nav">
+            <ul>
+                <li><a href="#"><i class="fas fa-bars"></i> All</a></li>
+                <li><a href="products-page.html?category=electronics">Electronics</a></li>
+                <li><a href="products-page.html?category=clothing">Clothing</a></li>
+                <li><a href="products-page.html?category=books">Books</a></li>
+                <li><a href="products-page.html?category=home">Home & Kitchen</a></li>
+                <li><a href="products-page.html?category=toys">Toys</a></li>
+                <li><a href="products-page.html">All Products</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="confirmation-container">
+        <div class="invoice-title">
+            <h1>AmaClone - Tax Invoice</h1>
+        </div>
+        
+        <div class="confirmation-header">
+            <i class="fas fa-check-circle"></i>
+            <h1>Order Placed, Thanks!</h1>
+            <p>Confirmation will be sent to your email.</p>
+        </div>
+        
+        <section class="confirmation-section">
+            <h2>Order Details</h2>
+            <div class="order-details">
+                <div class="order-info">
+                    <div class="detail-group">
+                        <div class="detail-label">Order Number:</div>
+                        <div class="detail-value" id="order-id">ORD-123456789</div>
+                    </div>
+                    <div class="detail-group">
+                        <div class="detail-label">Order Date:</div>
+                        <div class="detail-value" id="order-date">July 26, 2023</div>
+                    </div>
+                    <div class="detail-group">
+                        <div class="detail-label">Order Total:</div>
+                        <div class="detail-value" id="order-total">₹0.00</div>
+                    </div>
+                    <div class="detail-group">
+                        <div class="detail-label">Customer Email:</div>
+                        <div class="detail-value" id="customer-email"></div>
+                    </div>
+                </div>
+                
+                <div class="shipping-info">
+                    <div class="detail-group">
+                        <div class="detail-label">Shipping To:</div>
+                        <div class="detail-value" id="shipping-address">
+                            John Doe<br>
+                            123 Main St<br>
+                            Apt 4B<br>
+                            Anytown, CA 12345<br>
+                            United States
+                        </div>
+                    </div>
+                    <div class="detail-group">
+                        <div class="detail-label">Phone Number:</div>
+                        <div class="detail-value" id="shipping-phone">
+                            <!-- Will be populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="delivery-estimate">
+                <p>Estimated Delivery: <span class="delivery-date" id="delivery-date">Wednesday, August 10</span></p>
+            </div>
+        </section>
+        
+        <!-- Customer & Company Info (visible in print only) -->
+        <div class="customer-info print-grid">
+            <div class="billing-info">
+                <h3>Billing Information</h3>
+                <div id="billing-details">
+                    <!-- Will be populated dynamically -->
+                </div>
+            </div>
+            <div class="company-info">
+                <h3>Seller Information</h3>
+                <div>
+                    <strong>AmaClone India Pvt. Ltd.</strong><br>
+                    Cyber City, DLF Phase 2<br>
+                    Gurugram, Haryana 122002<br>
+                    India<br>
+                    GSTIN: 29AABCI1234A1Z5
+                </div>
+            </div>
+        </div>
+        
+        <section class="confirmation-section">
+            <h2>Order Summary</h2>
+            <div class="order-items" id="order-items">
+                <!-- Order items will be added dynamically -->
+            </div>
+            
+            <div class="order-summary-calculations">
+                <div class="order-summary-row">
+                    <span>Items:</span>
+                    <span id="items-total">₹0.00</span>
+                </div>
+                <div class="order-summary-row">
+                    <span>Shipping & handling:</span>
+                    <span id="shipping-total">₹0.00</span>
+                </div>
+                <div class="order-summary-row">
+                    <span>Tax (18% GST):</span>
+                    <span id="tax-total">₹0.00</span>
+                </div>
+                <div class="order-total">
+                    <span>Order total:</span>
+                    <span id="order-grand-total">₹0.00</span>
+                </div>
+            </div>
+        </section>
+        
+        <div class="action-buttons">
+            <a href="account.html" class="action-button">View order details</a>
+            <a href="index.html" class="action-button primary">Continue shopping</a>
+            <a href="#" class="action-button" id="print-invoice" onclick="window.print(); return false;">
+                <i class="fas fa-print"></i> Print Invoice
+            </a>
+            <a href="#" class="action-button download-invoice" id="download-invoice">
+                <i class="fas fa-download"></i> Download Invoice
+            </a>
+        </div>
+        
+        <div class="print-footer">
+            <p>This is a computer-generated invoice and does not require a signature.</p>
+            <p>Thank you for shopping with AmaClone!</p>
+        </div>
+        
+        <!-- Add product recommendations section (not visible in print) -->
+        <section class="recommendations-section confirmation-section">
+            <h2>Recommendations for You</h2>
+            <div id="recommendations-container" class="products-grid">
+                <!-- Recommendations will be added dynamically -->
+            </div>
+        </section>
+        
+        <div class="help-box">
+            <h3>Need Help?</h3>
+            <p>If you have any questions about your order, please contact our customer service team.</p>
+            <p><a href="account.html#orders"><i class="fas fa-box"></i> View or manage order</a></p>
+            <p><a href="returns.html?order_id=ORD-123456789"><i class="fas fa-undo"></i> Return or replace items</a></p>
+            <p><a href="help.html?topic=orders"><i class="fas fa-question-circle"></i> Get help with an order</a></p>
+            <p><a href="track.html?order_id=ORD-123456789"><i class="fas fa-truck"></i> Track your package</a></p>
+            <p><a href="contact.html"><i class="fas fa-headset"></i> Contact customer service</a></p>
+            
+            <div class="order-help-buttons">
+                <a href="chat.html" class="order-help-button">
+                    <i class="fas fa-comments"></i> Live Chat
+                </a>
+                <a href="tel:+918001234567" class="order-help-button">
+                    <i class="fas fa-phone"></i> Call Us
+                </a>
+                <a href="mailto:support@amaclone.in" class="order-help-button">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <div class="footer-column">
+                <h3>Get to Know Us</h3>
+                <ul>
+                    <li><a href="about.html">About AmaClone</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="corporate-info.html">Corporate Information</a></li>
+                    <li><a href="press-releases.html">Press Releases</a></li>
+                    <li><a href="community.html">Community Impact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Make Money with Us</h3>
+                <ul>
+                    <li><a href="sell.html">Sell on AmaClone</a></li>
+                    <li><a href="affiliate.html">Become an Affiliate</a></li>
+                    <li><a href="advertise.html">Advertise Your Products</a></li>
+                    <li><a href="publish.html">Self-Publish with Us</a></li>
+                    <li><a href="partner.html">Become a Partner</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="account.html">Your Account</a></li>
+                    <li><a href="shipping-policy.html">Shipping Rates & Policies</a></li>
+                    <li><a href="returns.html">Returns & Replacements</a></li>
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Connect with Us</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/" target="_blank">Facebook</a></li>
+                    <li><a href="https://twitter.com/" target="_blank">Twitter</a></li>
+                    <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+                    <li><a href="blog.html">Our Blog</a></li>
+                    <li><a href="newsletter.html">Subscribe to Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 AmaClone India. All Rights Reserved.@Tahsin Raza</p>
+        </div>
+    </footer>
+
+    <div id="notification-container"></div>
+    
+    <script src="products_india.js"></script>
+    <script src="products_india2.js"></script>
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            if (!userManager || !userManager.isLoggedIn()) {
+                window.location.href = 'login.html?redirect=order-confirmation.html';
+                return;
+            }
+            
+            // Get order ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('id');
+            
+            if (!orderId) {
+                window.location.href = 'account.html';
+                return;
+            }
+            
+            // Function to get order data from all possible sources
+            function getOrderData(orderId) {
+                let order = null;
+                
+                // First, try to find the order in the user's orders
+                if (userManager.currentUser && userManager.currentUser.orders && userManager.currentUser.orders.length) {
+                    order = userManager.currentUser.orders.find(o => o.id === orderId);
+                }
+                
+                // If not found in user.orders, check localStorage
+                if (!order) {
+                    try {
+                        const latestOrder = JSON.parse(localStorage.getItem('latestOrder'));
+                        if (latestOrder && latestOrder.id === orderId) {
+                            order = latestOrder;
+                            
+                            // Add order to user profile if it's not there already
+                            saveOrderToUserProfile(order);
+                        }
+                    } catch (e) {
+                        console.error('Error parsing order from localStorage:', e);
+                    }
+                }
+                
+                return order;
+            }
+            
+            // Function to save order to user profile
+            function saveOrderToUserProfile(order) {
+                try {
+                    // Get existing orders or create new array
+                    const orders = userManager.currentUser.orders ? 
+                        [...userManager.currentUser.orders] : [];
+                    
+                    // Check if order already exists in profile
+                    if (!orders.some(o => o.id === order.id)) {
+                        // Add new order
+                        orders.push(order);
+                        
+                        // Update profile
+                        userManager.updateProfile({ orders });
+                        
+                        // Save changes to localStorage
+                        userManager.saveUsers();
+                        
+                        console.log('Order saved to user profile:', order.id);
+                    }
+                } catch (error) {
+                    console.error('Error saving order to user profile:', error);
+                }
+            }
+            
+            // Get the order data
+            const order = getOrderData(orderId);
+            
+            // If order not found, show error and redirect
+            if (!order) {
+                if (typeof notificationSystem !== 'undefined' && notificationSystem.error) {
+                    notificationSystem.error('Order information not found');
+                } else if (typeof showNotification === 'function') {
+                    showNotification('Order information not found', 'error');
+                } else {
+                    alert('Order information not found');
+                }
+                
+                setTimeout(() => {
+                    window.location.href = 'account.html';
+                }, 2000);
+                return;
+            }
+            
+            // Update cart count to 0 after successful order
+            if (typeof updateCartCount === 'function') {
+                updateCartCount();
+            }
+            
+            // Populate order details
+            document.getElementById('order-id').textContent = order.id;
+            
+            // Show order date with full date and time
+            const orderDate = new Date(order.date);
+            document.getElementById('order-date').textContent = orderDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            
+            // Add timestamp to order date
+            const timestampElement = document.createElement('div');
+            timestampElement.className = 'order-timestamp';
+            timestampElement.textContent = orderDate.toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            });
+            document.getElementById('order-date').parentNode.appendChild(timestampElement);
+            
+            document.getElementById('order-total').textContent = `₹${order.orderTotal.toLocaleString()}`;
+            
+            // Add customer email
+            document.getElementById('customer-email').textContent = userManager.currentUser.email;
+            
+            // Populate shipping address
+            document.getElementById('shipping-address').innerHTML = `
+                ${order.shippingAddress.name}<br>
+                ${order.shippingAddress.addressLine1}<br>
+                ${order.shippingAddress.addressLine2 ? order.shippingAddress.addressLine2 + '<br>' : ''}
+                ${order.shippingAddress.city}, ${order.shippingAddress.state} ${order.shippingAddress.zip}<br>
+                ${order.shippingAddress.country}
+            `;
+            
+            // Populate billing details for invoice
+            document.getElementById('billing-details').innerHTML = `
+                <strong>${order.shippingAddress.name}</strong><br>
+                ${order.shippingAddress.addressLine1}<br>
+                ${order.shippingAddress.addressLine2 ? order.shippingAddress.addressLine2 + '<br>' : ''}
+                ${order.shippingAddress.city}, ${order.shippingAddress.state} ${order.shippingAddress.zip}<br>
+                ${order.shippingAddress.country}<br><br>
+                <strong>Email:</strong> ${userManager.currentUser.email}<br>
+                <strong>Phone:</strong> ${order.shippingAddress.phone || 'Not provided'}<br>
+                <strong>Order Date:</strong> ${orderDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                })} ${orderDate.toLocaleTimeString('en-US', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true
+                })}
+            `;
+            
+            // Populate phone number
+            document.getElementById('shipping-phone').textContent = order.shippingAddress.phone || 'Not provided';
+            
+            // Set delivery date (5-7 days from order date)
+            const deliveryDate = new Date(orderDate);
+            deliveryDate.setDate(deliveryDate.getDate() + 5 + Math.floor(Math.random() * 3));
+            document.getElementById('delivery-date').textContent = deliveryDate.toLocaleDateString('en-US', {
+                weekday: 'long',
+                month: 'long',
+                day: 'numeric'
+            });
+            
+            // Populate order items
+            const orderItemsContainer = document.getElementById('order-items');
+            orderItemsContainer.innerHTML = '';
+            
+            order.items.forEach(item => {
+                const orderItem = document.createElement('div');
+                orderItem.className = 'order-item';
+                
+                // Add link to the product page
+                orderItem.innerHTML = `
+                    <div class="order-item-image">
+                        <a href="product.html?id=${item.productId}">
+                            <img src="${item.image}" alt="${item.productName}">
+                        </a>
+                    </div>
+                    <div class="order-item-details">
+                        <div class="order-item-title">
+                            <a href="product.html?id=${item.productId}">${item.productName}</a>
+                        </div>
+                        <div class="order-item-price">₹${item.price.toLocaleString()}</div>
+                        <div class="order-item-quantity">Quantity: ${item.quantity}</div>
+                        <div class="order-item-total">Total: ₹${(item.price * item.quantity).toLocaleString()}</div>
+                        <div class="order-item-actions">
+                            <a href="product.html?id=${item.productId}" class="buy-again-btn">Buy again</a>
+                            <a href="#" class="write-review-btn" data-product-id="${item.productId}">Write a review</a>
+                        </div>
+                    </div>
+                `;
+                
+                orderItemsContainer.appendChild(orderItem);
+            });
+            
+            // Populate order summary
+            document.getElementById('items-total').textContent = `₹${order.itemsTotal.toLocaleString()}`;
+            document.getElementById('shipping-total').textContent = `₹${order.shippingTotal.toLocaleString()}`;
+            document.getElementById('tax-total').textContent = `₹${order.taxTotal.toLocaleString()}`;
+            document.getElementById('order-grand-total').textContent = `₹${order.orderTotal.toLocaleString()}`;
+            
+            // Add gift wrap cost if applicable
+            if (order.giftWrapCost > 0) {
+                const giftWrapRow = document.createElement('div');
+                giftWrapRow.className = 'order-summary-row';
+                giftWrapRow.innerHTML = `
+                    <span>Gift wrapping:</span>
+                    <span>₹${order.giftWrapCost.toLocaleString()}</span>
+                `;
+                
+                const calculationsContainer = document.querySelector('.order-summary-calculations');
+                calculationsContainer.insertBefore(giftWrapRow, document.querySelector('.order-total'));
+            }
+            
+            // If the order has payment method, show it as well
+            if (order.paymentMethod) {
+                const paymentMethodElement = document.createElement('div');
+                paymentMethodElement.className = 'detail-group';
+                
+                let paymentMethodName = 'Credit Card';
+                let paymentIcon = 'fa-credit-card';
+                
+                if (order.paymentMethod === 'paypal') {
+                    paymentMethodName = 'PayPal';
+                    paymentIcon = 'fa-paypal';
+                } else if (order.paymentMethod === 'amazon-pay' || order.paymentMethod === 'amazonpay') {
+                    paymentMethodName = 'Amazon Pay';
+                    paymentIcon = 'fa-amazon-pay';
+                } else if (order.paymentMethod === 'upi') {
+                    paymentMethodName = 'UPI';
+                    paymentIcon = 'fa-money-bill-transfer';
+                } else if (order.paymentMethod === 'cod') {
+                    paymentMethodName = 'Cash on Delivery';
+                    paymentIcon = 'fa-money-bill';
+                } else if (order.paymentMethod === 'net-banking') {
+                    paymentMethodName = 'Net Banking';
+                    paymentIcon = 'fa-university';
+                }
+                
+                paymentMethodElement.innerHTML = `
+                    <div class="detail-label">Payment Method:</div>
+                    <div class="detail-value">
+                        <i class="fas ${paymentIcon} payment-method-icon"></i>
+                        ${paymentMethodName}
+                    </div>
+                `;
+                
+                document.querySelector('.order-info').appendChild(paymentMethodElement);
+            }
+            
+            // Add gift message if this is a gift
+            if (order.isGift) {
+                const giftSection = document.createElement('div');
+                giftSection.className = 'gift-section';
+                giftSection.innerHTML = `
+                    <div class="detail-group">
+                        <div class="detail-label">Gift Options:</div>
+                        <div class="detail-value">
+                            <div class="gift-icon"><i class="fas fa-gift"></i> This order contains a gift</div>
+                            ${order.giftMessage ? `<div class="gift-message">Message: "${order.giftMessage}"</div>` : ''}
+                            ${order.giftWrap ? '<div class="gift-wrap">Gift wrapped</div>' : ''}
+                        </div>
+                    </div>
+                `;
+                
+                document.querySelector('.order-details').appendChild(giftSection);
+            }
+            
+            // Add product details heading to order items section
+            const productHeading = document.createElement('h3');
+            productHeading.className = 'product-heading';
+            productHeading.textContent = 'Products Ordered';
+            document.getElementById('order-items').insertAdjacentElement('beforebegin', productHeading);
+
+            // Add order status display
+            const statusElement = document.createElement('span');
+            statusElement.className = 'order-status';
+            statusElement.textContent = order.status.charAt(0).toUpperCase() + order.status.slice(1);
+            document.getElementById('order-id').parentNode.appendChild(statusElement);
+            
+            // Update order ID in help links
+            document.querySelectorAll('.help-box a[href*="order_id="]').forEach(link => {
+                const href = link.getAttribute('href');
+                link.setAttribute('href', href.replace('ORD-123456789', order.id));
+            });
+            
+            // Handle PDF download
+            document.getElementById('download-invoice').addEventListener('click', function(e) {
+                e.preventDefault();
+                // Create a temporary element to trigger the print dialog
+                // which can be used to save as PDF
+                window.print();
+            });
+            
+            // Load product recommendations
+            loadRecommendationsForOrder(order);
+            
+            // Write review functionality
+            document.querySelectorAll('.write-review-btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const productId = this.getAttribute('data-product-id');
+                    // Show review modal or redirect to review page
+                    showReviewModal(productId);
+                });
+            });
+            
+            // Buy again functionality 
+            document.querySelectorAll('.buy-again-btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    // Default event will navigate to product page
+                    // We don't need to preventDefault() as we want the link to work
+                });
+            });
+            
+            // View order details - make sure the link works
+            document.querySelector('a[href="account.html"]').addEventListener('click', function(e) {
+                // This will navigate to account.html by default
+                // Add any additional functionality if needed
+            });
+            
+            // Continue shopping - make sure the link works
+            document.querySelector('a[href="index.html"]').addEventListener('click', function(e) {
+                // This will navigate to index.html by default
+                // Add any additional functionality if needed
+            });
+            
+            // Footer mobile accordion
+            if (window.innerWidth <= 768) {
+                const footerHeadings = document.querySelectorAll('.footer-column h3');
+                
+                footerHeadings.forEach(heading => {
+                    heading.addEventListener('click', function() {
+                        const parent = this.parentElement;
+                        parent.classList.toggle('active');
+                    });
+                });
+            }
+            
+            // Function to load product recommendations based on order
+            function loadRecommendationsForOrder(order) {
+                const recommendationsContainer = document.getElementById('recommendations-container');
+                if (!recommendationsContainer) return;
+                
+                // Get categories of ordered products
+                const categories = [...new Set(order.items.map(item => {
+                    const product = allProducts.find(p => p.id === item.productId);
+                    return product ? product.category : null;
+                }).filter(cat => cat !== null))];
+                
+                // Get product IDs that were ordered
+                const orderedProductIds = order.items.map(item => item.productId);
+                
+                // Get recommendations from the same categories, but not the same products
+                let recommendations = allProducts.filter(product => 
+                    categories.includes(product.category) && 
+                    !orderedProductIds.includes(product.id)
+                );
+                
+                // If we don't have enough recommendations, add some featured products
+                if (recommendations.length < 4) {
+                    const featuredProducts = allProducts.filter(product => 
+                        product.featured && 
+                        !orderedProductIds.includes(product.id) &&
+                        !recommendations.some(rec => rec.id === product.id)
+                    );
+                    recommendations = [...recommendations, ...featuredProducts];
+                }
+                
+                // Limit to 4 products
+                recommendations = recommendations.slice(0, 4);
+                
+                // Display recommendations
+                recommendations.forEach(product => {
+                    recommendationsContainer.appendChild(createProductCard(product));
+                });
+            }
+            
+            // Function to create product card
+            function createProductCard(product) {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                
+                const discountBadge = product.discount > 0 
+                    ? `<div class="product-discount-badge">-${product.discount}%</div>` 
+                    : '';
+                
+                card.innerHTML = `
+                    <div class="product-card-image">
+                        <a href="product.html?id=${product.id}">
+                            <img src="${product.images[0]}" alt="${product.name}">
+                        </a>
+                        ${discountBadge}
+                    </div>
+                    <div class="product-card-content">
+                        <div class="product-card-title">
+                            <a href="product.html?id=${product.id}">${product.name}</a>
+                        </div>
+                        <div class="product-card-rating">
+                            ${generateRatingStars(product.rating)}
+                            <span class="review-count">(${product.reviewCount})</span>
+                        </div>
+                        <div class="product-card-price">₹${product.price.toLocaleString()}</div>
+                        <div class="product-card-cta">
+                            <button class="add-to-cart-btn" data-product-id="${product.id}">Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+                
+                // Add to cart functionality
+                card.querySelector('.add-to-cart-btn').addEventListener('click', function() {
+                    const productId = parseInt(this.dataset.productId);
+                    const product = allProducts.find(p => p.id === productId);
+                    if (product) {
+                        addToCart(product, 1);
+                    }
+                });
+                
+                return card;
+            }
+            
+            // Function to generate rating stars
+            function generateRatingStars(rating) {
+                const fullStars = Math.floor(rating);
+                const hasHalfStar = rating % 1 >= 0.5;
+                const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+                
+                let starsHTML = '<div class="stars">';
+                
+                // Full stars
+                for (let i = 0; i < fullStars; i++) {
+                    starsHTML += '<i class="fas fa-star"></i>';
+                }
+                
+                // Half star
+                if (hasHalfStar) {
+                    starsHTML += '<i class="fas fa-star-half-alt"></i>';
+                }
+                
+                // Empty stars
+                for (let i = 0; i < emptyStars; i++) {
+                    starsHTML += '<i class="far fa-star"></i>';
+                }
+                
+                starsHTML += '</div>';
+                
+                return starsHTML;
+            }
+            
+            // Initialize review modal
+            function showReviewModal(productId) {
+                // Create modal if it doesn't exist
+                if (!document.getElementById('review-modal')) {
+                    const modal = document.createElement('div');
+                    modal.id = 'review-modal';
+                    modal.className = 'modal';
+                    modal.innerHTML = `
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <h2>Write a Review</h2>
+                            <form id="review-form">
+                                <input type="hidden" id="review-product-id" value="">
+                                <div class="form-group">
+                                    <label>Rating:</label>
+                                    <div class="rating-input">
+                                        <i class="far fa-star" data-rating="1"></i>
+                                        <i class="far fa-star" data-rating="2"></i>
+                                        <i class="far fa-star" data-rating="3"></i>
+                                        <i class="far fa-star" data-rating="4"></i>
+                                        <i class="far fa-star" data-rating="5"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="review-title">Title:</label>
+                                    <input type="text" id="review-title" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="review-text">Review:</label>
+                                    <textarea id="review-text" rows="5" required></textarea>
+                                </div>
+                                <button type="submit" class="btn primary">Submit Review</button>
+                            </form>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(modal);
+                    
+                    // Rating stars functionality
+                    const ratingStars = document.querySelectorAll('.rating-input i');
+                    let selectedRating = 0;
+                    
+                    ratingStars.forEach(star => {
+                        star.addEventListener('mouseover', function() {
+                            const rating = parseInt(this.dataset.rating);
+                            highlightStars(rating);
+                        });
+                        
+                        star.addEventListener('mouseout', function() {
+                            highlightStars(selectedRating);
+                        });
+                        
+                        star.addEventListener('click', function() {
+                            selectedRating = parseInt(this.dataset.rating);
+                            highlightStars(selectedRating);
+                        });
+                    });
+                    
+                    function highlightStars(rating) {
+                        ratingStars.forEach(star => {
+                            const starRating = parseInt(star.dataset.rating);
+                            if (starRating <= rating) {
+                                star.classList.remove('far');
+                                star.classList.add('fas');
+                                star.classList.add('active');
+                            } else {
+                                star.classList.remove('fas');
+                                star.classList.add('far');
+                                star.classList.remove('active');
+                            }
+                        });
+                    }
+                    
+                    // Close button functionality
+                    document.querySelector('.close').addEventListener('click', function() {
+                        document.getElementById('review-modal').style.display = 'none';
+                    });
+                    
+                    // Submit review form
+                    document.getElementById('review-form').addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        
+                        if (selectedRating === 0) {
+                            notificationSystem.error('Please select a rating');
+                            return;
+                        }
+                        
+                        // Get form data
+                        const productId = document.getElementById('review-product-id').value;
+                        const title = document.getElementById('review-title').value;
+                        const text = document.getElementById('review-text').value;
+                        
+                        // In a real application, you would send this to a server
+                        // For demo purposes, just show success notification
+                        notificationSystem.success('Your review has been submitted. Thank you!');
+                        
+                        // Close modal
+                        document.getElementById('review-modal').style.display = 'none';
+                        
+                        // Reset form
+                        this.reset();
+                        selectedRating = 0;
+                        highlightStars(0);
+                    });
+                    
+                    // Close modal when clicking outside
+                    window.addEventListener('click', function(e) {
+                        const modal = document.getElementById('review-modal');
+                        if (e.target === modal) {
+                            modal.style.display = 'none';
+                        }
+                    });
+                }
+                
+                // Set product ID and open modal
+                document.getElementById('review-product-id').value = productId;
+                document.getElementById('review-modal').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html> 

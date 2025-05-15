@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Press Releases | AmaClone India</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .press-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .press-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .press-header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+        
+        .press-header p {
+            font-size: 18px;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .press-tools {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            gap: 20px;
+        }
+        
+        .press-search {
+            flex: 1;
+            min-width: 250px;
+            display: flex;
+        }
+        
+        .press-search input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 14px;
+        }
+        
+        .press-search button {
+            padding: 0 20px;
+            background: #f8c471;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            color: #232f3e;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .press-search button:hover {
+            background: #f39c12;
+        }
+        
+        .press-filter {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .filter-select {
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .press-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+        
+        .press-releases {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .press-release {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .press-release:hover {
+            transform: translateY(-10px);
+        }
+        
+        .press-release-content {
+            padding: 25px;
+        }
+        
+        .press-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .press-date {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .press-category {
+            margin-left: 15px;
+            padding: 4px 10px;
+            background: #f8c471;
+            color: #232f3e;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .press-release h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .press-release p {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .read-more {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #f8c471;
+            color: #232f3e;
+            border-radius: 4px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .read-more:hover {
+            background: #f39c12;
+            transform: translateY(-3px);
+            text-decoration: none;
+        }
+        
+        .press-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .sidebar-section {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-section h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f8c471;
+        }
+        
+        .contact-info p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .contact-info strong {
+            color: #232f3e;
+        }
+        
+        .contact-info a {
+            color: #0066c0;
+            text-decoration: none;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        .categories-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .categories-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .categories-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .categories-list a {
+            display: flex;
+            justify-content: space-between;
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .categories-list a:hover {
+            color: #f39c12;
+        }
+        
+        .resources-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .resources-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .resources-list i {
+            margin-right: 10px;
+            color: #f8c471;
+            font-size: 18px;
+        }
+        
+        .resources-list a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .resources-list a:hover {
+            color: #f39c12;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .newsletter-form input {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .newsletter-form button {
+            padding: 12px;
+            background: #f8c471;
+            color: #232f3e;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .newsletter-form button:hover {
+            background: #f39c12;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            gap: 10px;
+        }
+        
+        .pagination a {
+            display: inline-block;
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid #ddd;
+            color: #333;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .pagination a:hover,
+        .pagination a.active {
+            background: #f8c471;
+            color: #232f3e;
+            border-color: #f8c471;
+        }
+        
+        @media (max-width: 992px) {
+            .press-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .press-tools {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html"><img src="https://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="Amazon Logo"></a>
+            </div>
+            <div class="delivery-location">
+                <div class="location-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="location-text">
+                    <span class="nav-line-1">Delivering to Lucknow 226006</span>
+                    <span class="nav-line-2">Update location</span>
+                </div>
+            </div>
+            <div class="search-bar">
+                <select name="category" id="category-select">
+                    <option value="all">All</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="books">Books</option>
+                    <option value="home">Home & Kitchen</option>
+                </select>
+                <input type="text" placeholder="Search Amazon.in" id="search-input" aria-label="Search">
+                <button type="submit" aria-label="Search"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="language-selector">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/1200px-Flag_of_India.svg.png" alt="Indian Flag">
+                <span>EN</span>
+                <i class="fas fa-caret-down"></i>
+            </div>
+            <div class="header-nav">
+                <div class="nav-item">
+                    <span class="nav-line-1">Hello, sign in</span>
+                    <span class="nav-line-2">Account & Lists <i class="fas fa-caret-down"></i></span>
+                </div>
+                <div class="nav-item">
+                    <a href="account.html">
+                        <span class="nav-line-1">Returns</span>
+                        <span class="nav-line-2">& Orders</span>
+                    </a>
+                </div>
+                <div class="nav-item cart">
+                    <a href="cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count">0</span>
+                        <span class="cart-text">Cart</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="sub-nav">
+            <ul>
+                <li><a href="#"><i class="fas fa-bars"></i> All</a></li>
+                <li><a href="products-page.html?category=fresh">Fresh</a></li>
+                <li><a href="products-page.html?category=mx-player">MX Player</a></li>
+                <li><a href="products-page.html?category=sell">Sell</a></li>
+                <li><a href="products-page.html?category=bestsellers">Bestsellers</a></li>
+                <li><a href="products-page.html?category=today-deals">Today's Deals</a></li>
+                <li><a href="products-page.html?category=mobiles">Mobiles</a></li>
+                <li><a href="products-page.html?category=fashion">Fashion</a></li>
+                <li><a href="products-page.html?category=customer-service">Customer Service</a></li>
+                <li><a href="products-page.html?category=prime">Prime</a></li>
+                <li><a href="products-page.html?category=new-releases">New Releases</a></li>
+                <li><a href="products-page.html?category=electronics">Electronics</a></li>
+                <li><a href="products-page.html?category=home-kitchen">Home & Kitchen</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="press-container">
+            <div class="press-header">
+                <h1>Press Releases</h1>
+                <p>Stay updated with the latest news and announcements from AmaClone India</p>
+            </div>
+            
+            <div class="press-tools">
+                <div class="press-search">
+                    <input type="text" placeholder="Search press releases...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="press-filter">
+                    <select class="filter-select">
+                        <option value="all">All Categories</option>
+                        <option value="business">Business Updates</option>
+                        <option value="product">Product Launches</option>
+                        <option value="expansion">Expansion News</option>
+                        <option value="csr">Social Responsibility</option>
+                    </select>
+                    
+                    <select class="filter-select">
+                        <option value="recent">Most Recent</option>
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="press-grid">
+                <div class="press-releases">
+                    <div class="press-release">
+                        <div class="press-release-content">
+                            <div class="press-meta">
+                                <span class="press-date">May 15, 2025</span>
+                                <span class="press-category">Expansion News</span>
+                            </div>
+                            <h2>AmaClone India Opens New Fulfillment Center in Jaipur, Creating 2,000 Jobs</h2>
+                            <p>JAIPUR – AmaClone India today announced the opening of its newest fulfillment center in Jaipur, Rajasthan. The 450,000 square-foot facility is AmaClone's first in Rajasthan and will create more than 2,000 full-time jobs with comprehensive benefits from day one. This expansion will support faster delivery for customers in Rajasthan and neighboring states...</p>
+                            <a href="#" class="read-more">Read Full Release</a>
+                        </div>
+                    </div>
+                    
+                    <div class="press-release">
+                        <div class="press-release-content">
+                            <div class="press-meta">
+                                <span class="press-date">April 30, 2025</span>
+                                <span class="press-category">Product Launches</span>
+                            </div>
+                            <h2>AmaClone Introduces "AmaClone Pay Later" Monthly Installment Service for Indian Customers</h2>
+                            <p>BENGALURU – AmaClone India today launched "AmaClone Pay Later," a new payment method enabling customers to purchase products with interest-free monthly installments. Available on eligible purchases above ₹3,000, the service aims to make shopping more accessible and convenient for Indian consumers. The launch comes after a successful pilot program that saw over 500,000 customers use the service...</p>
+                            <a href="#" class="read-more">Read Full Release</a>
+                        </div>
+                    </div>
+                    
+                    <div class="press-release">
+                        <div class="press-release-content">
+                            <div class="press-meta">
+                                <span class="press-date">April 12, 2025</span>
+                                <span class="press-category">Business Updates</span>
+                            </div>
+                            <h2>AmaClone India Reports 32% Growth in FY 2024-25, Crosses 100 Million Product Selection</h2>
+                            <p>BENGALURU – AmaClone India today announced its financial results for the fiscal year ending March 31, 2025, reporting a 32% year-over-year growth in revenue. The company also announced that its product selection has expanded to over 100 million products, making it India's largest online marketplace. The robust performance was driven by strong growth in Prime memberships and expansion into new categories...</p>
+                            <a href="#" class="read-more">Read Full Release</a>
+                        </div>
+                    </div>
+                    
+                    <div class="press-release">
+                        <div class="press-release-content">
+                            <div class="press-meta">
+                                <span class="press-date">March 22, 2025</span>
+                                <span class="press-category">Social Responsibility</span>
+                            </div>
+                            <h2>AmaClone India Pledges ₹250 Crore to Support Small Businesses in Digital Transformation</h2>
+                            <p>BENGALURU – AmaClone India today announced a new ₹250 crore initiative aimed at helping small and medium businesses across India digitize their operations and expand their online presence. The "Digital Vikas" program will provide technical training, financial support, and access to AmaClone's logistics network to over 10 lakh small businesses over the next two years. The initiative comes as part of AmaClone's commitment to supporting India's digital economy...</p>
+                            <a href="#" class="read-more">Read Full Release</a>
+                        </div>
+                    </div>
+                    
+                    <div class="press-release">
+                        <div class="press-release-content">
+                            <div class="press-meta">
+                                <span class="press-date">February 15, 2025</span>
+                                <span class="press-category">Product Launches</span>
+                            </div>
+                            <h2>AmaClone Fresh Expands to 15 Additional Cities, Offering Two-Hour Grocery Delivery</h2>
+                            <p>BENGALURU – AmaClone India today announced the expansion of its AmaClone Fresh grocery delivery service to 15 additional cities, including Ahmedabad, Lucknow, and Chandigarh. With this expansion, AmaClone Fresh now operates in 25 cities across India, offering customers access to over 5,000 products, including fresh produce, dairy, meat, and everyday essentials with delivery in as little as two hours...</p>
+                            <a href="#" class="read-more">Read Full Release</a>
+                        </div>
+                    </div>
+                    
+                    <div class="press-release">
+                        <div class="press-release-content">
+                            <div class="press-meta">
+                                <span class="press-date">January 25, 2025</span>
+                                <span class="press-category">Social Responsibility</span>
+                            </div>
+                            <h2>AmaClone India Commits to 100% Renewable Energy for All Operations by 2030</h2>
+                            <p>BENGALURU – AmaClone India today announced its commitment to power all its operations with 100% renewable energy by 2030, as part of its broader Climate Pledge to be net-zero carbon by 2040. The company has already deployed solar panels at 10 fulfillment centers across India and signed agreements to develop three new solar farms in Karnataka, Tamil Nadu, and Maharashtra that will generate 850,000 megawatt hours of renewable energy annually...</p>
+                            <a href="#" class="read-more">Read Full Release</a>
+                        </div>
+                    </div>
+                    
+                    <div class="pagination">
+                        <a href="#" class="active">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">Next</a>
+                    </div>
+                </div>
+                
+                <div class="press-sidebar">
+                    <div class="sidebar-section contact-info">
+                        <h3>Media Contact</h3>
+                        <p><strong>Nisha Kapoor</strong><br>
+                        Head of Communications<br>
+                        AmaClone India</p>
+                        <p>Email: <a href="mailto:press@amaclone.in">press@amaclone.in</a><br>
+                        Phone: +91-80-5678-1234</p>
+                        <p>For urgent inquiries, please contact:<br>
+                        <a href="mailto:media-urgent@amaclone.in">media-urgent@amaclone.in</a></p>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3>Press Release Categories</h3>
+                        <ul class="categories-list">
+                            <li><a href="#">Business Updates <span>(15)</span></a></li>
+                            <li><a href="#">Product Launches <span>(24)</span></a></li>
+                            <li><a href="#">Expansion News <span>(18)</span></a></li>
+                            <li><a href="#">Social Responsibility <span>(12)</span></a></li>
+                            <li><a href="#">Corporate Announcements <span>(9)</span></a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3>Media Resources</h3>
+                        <ul class="resources-list">
+                            <li><i class="fas fa-images"></i> <a href="#">Image Gallery</a></li>
+                            <li><i class="fas fa-file-download"></i> <a href="#">Press Kits</a></li>
+                            <li><i class="fas fa-video"></i> <a href="#">Video Library</a></li>
+                            <li><i class="fas fa-user-tie"></i> <a href="#">Executive Bios</a></li>
+                            <li><i class="fas fa-building"></i> <a href="#">Company Fact Sheet</a></li>
+                            <li><i class="fas fa-file-alt"></i> <a href="#">Logos & Brand Assets</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3>Press Alerts</h3>
+                        <p>Subscribe to receive press releases and media updates directly to your inbox.</p>
+                        <form class="newsletter-form">
+                            <input type="text" placeholder="Name">
+                            <input type="email" placeholder="Email address">
+                            <input type="text" placeholder="Media organization">
+                            <button type="submit">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="back-to-top" id="back-to-top">
+        <i class="fas fa-chevron-up"></i> Back to top
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <div class="footer-column">
+                <h3>Get to Know Us</h3>
+                <ul>
+                    <li><a href="about.html">About AmaClone</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="corporate-info.html">Corporate Information</a></li>
+                    <li><a href="press-releases.html">Press Releases</a></li>
+                    <li><a href="community.html">Community Impact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Make Money with Us</h3>
+                <ul>
+                    <li><a href="sell.html">Sell on AmaClone</a></li>
+                    <li><a href="affiliate.html">Become an Affiliate</a></li>
+                    <li><a href="advertise.html">Advertise Your Products</a></li>
+                    <li><a href="publish.html">Self-Publish with Us</a></li>
+                    <li><a href="partner.html">Become a Partner</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="account.html">Your Account</a></li>
+                    <li><a href="shipping-policy.html">Shipping Rates & Policies</a></li>
+                    <li><a href="returns.html">Returns & Replacements</a></li>
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Connect with Us</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/" target="_blank">Facebook</a></li>
+                    <li><a href="https://twitter.com/" target="_blank">Twitter</a></li>
+                    <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+                    <li><a href="blog.html">Our Blog</a></li>
+                    <li><a href="newsletter.html">Subscribe to Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 AmaClone India. All Rights Reserved.@Tahsin Raza</p>
+        </div>
+    </footer>
+
+    <div id="notification-container"></div>
+    
+    <script src="products_india.js"></script>
+    <script src="products_india2.js"></script>
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html> 

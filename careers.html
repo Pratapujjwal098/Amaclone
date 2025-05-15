@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers | AmaClone India</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .careers-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .careers-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+        
+        .careers-hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+        
+        .careers-hero p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 70px;
+            height: 3px;
+            background-color: #f8c471;
+        }
+        
+        .careers-section {
+            margin-bottom: 50px;
+        }
+        
+        .careers-section p {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .benefit-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+        }
+        
+        .benefit-icon {
+            font-size: 30px;
+            color: #f8c471;
+            margin-right: 20px;
+        }
+        
+        .benefit-content h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .benefit-content p {
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+        
+        .jobs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .job-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 25px;
+            transition: transform 0.3s;
+        }
+        
+        .job-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .job-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #232f3e;
+        }
+        
+        .job-location {
+            color: #555;
+            font-size: 14px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .job-location i {
+            margin-right: 8px;
+            color: #f8c471;
+        }
+        
+        .job-description {
+            margin-bottom: 20px;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        .apply-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #f8c471;
+            color: #232f3e;
+            border-radius: 4px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .apply-btn:hover {
+            background: #f39c12;
+            transform: translateY(-3px);
+            text-decoration: none;
+        }
+        
+        .team-section {
+            margin: 60px 0;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .team-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .team-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .team-content {
+            padding: 20px;
+        }
+        
+        .team-content h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .team-content p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .team-social a {
+            color: #232f3e;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        .team-social a:hover {
+            color: #f8c471;
+        }
+        
+        .cta-section {
+            background: #232f3e;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            border-radius: 8px;
+            margin: 50px 0;
+        }
+        
+        .cta-section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #f8c471;
+            color: #232f3e;
+            border-radius: 4px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .cta-btn:hover {
+            background: #f39c12;
+            transform: translateY(-3px);
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .benefits-grid,
+            .jobs-container,
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html"><img src="https://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="Amazon Logo"></a>
+            </div>
+            <div class="delivery-location">
+                <div class="location-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="location-text">
+                    <span class="nav-line-1">Delivering to Lucknow 226006</span>
+                    <span class="nav-line-2">Update location</span>
+                </div>
+            </div>
+            <div class="search-bar">
+                <select name="category" id="category-select">
+                    <option value="all">All</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="books">Books</option>
+                    <option value="home">Home & Kitchen</option>
+                </select>
+                <input type="text" placeholder="Search Amazon.in" id="search-input" aria-label="Search">
+                <button type="submit" aria-label="Search"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="language-selector">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/1200px-Flag_of_India.svg.png" alt="Indian Flag">
+                <span>EN</span>
+                <i class="fas fa-caret-down"></i>
+            </div>
+            <div class="header-nav">
+                <div class="nav-item">
+                    <span class="nav-line-1">Hello, sign in</span>
+                    <span class="nav-line-2">Account & Lists <i class="fas fa-caret-down"></i></span>
+                </div>
+                <div class="nav-item">
+                    <a href="account.html">
+                        <span class="nav-line-1">Returns</span>
+                        <span class="nav-line-2">& Orders</span>
+                    </a>
+                </div>
+                <div class="nav-item cart">
+                    <a href="cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count">0</span>
+                        <span class="cart-text">Cart</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="sub-nav">
+            <ul>
+                <li><a href="#"><i class="fas fa-bars"></i> All</a></li>
+                <li><a href="products-page.html?category=fresh">Fresh</a></li>
+                <li><a href="products-page.html?category=mx-player">MX Player</a></li>
+                <li><a href="products-page.html?category=sell">Sell</a></li>
+                <li><a href="products-page.html?category=bestsellers">Bestsellers</a></li>
+                <li><a href="products-page.html?category=today-deals">Today's Deals</a></li>
+                <li><a href="products-page.html?category=mobiles">Mobiles</a></li>
+                <li><a href="products-page.html?category=fashion">Fashion</a></li>
+                <li><a href="products-page.html?category=customer-service">Customer Service</a></li>
+                <li><a href="products-page.html?category=prime">Prime</a></li>
+                <li><a href="products-page.html?category=new-releases">New Releases</a></li>
+                <li><a href="products-page.html?category=electronics">Electronics</a></li>
+                <li><a href="products-page.html?category=home-kitchen">Home & Kitchen</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="careers-container">
+            <section class="careers-hero">
+                <h1>Join Our Team</h1>
+                <p>Build your career at AmaClone and help shape the future of e-commerce in India</p>
+                <a href="#open-positions" class="cta-btn">View Open Positions</a>
+            </section>
+            
+            <section class="careers-section">
+                <h2 class="section-title">Why Work With Us</h2>
+                <p>At AmaClone, we're on a mission to be India's most customer-centric company. We're looking for talented, passionate people who want to build something that matters — something that affects millions of people daily.</p>
+                <p>Our diverse teams work on exciting challenges to revolutionize the way India shops online. We're known for our bias for action, entrepreneurial spirit, and commitment to operational excellence. If you want to make a big impact in a fast-paced environment, you'll find yourself right at home.</p>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Growth & Development</h3>
+                            <p>Continuous learning opportunities with access to mentorship, training programs, and career advancement paths.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-hand-holding-medical"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Comprehensive Benefits</h3>
+                            <p>Competitive salary, health insurance for you and your family, retirement plans, and employee stock options.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Work-Life Balance</h3>
+                            <p>Flexible work arrangements, generous paid time off, parental leave, and wellness programs.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Innovation Culture</h3>
+                            <p>Freedom to experiment, solve complex problems, and contribute ideas that drive meaningful change.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="careers-section" id="open-positions">
+                <h2 class="section-title">Open Positions</h2>
+                <p>Explore opportunities to join our team and make an impact across technology, operations, business, and more.</p>
+                
+                <div class="jobs-container">
+                    <div class="job-card">
+                        <h3 class="job-title">Senior Software Engineer</h3>
+                        <div class="job-location">
+                            <i class="fas fa-map-marker-alt"></i> Bengaluru, India
+                        </div>
+                        <p class="job-description">Design and develop scalable, high-performance services and applications that power our e-commerce platform. Strong experience with Java, AWS, and microservices architecture required.</p>
+                        <a href="#" class="apply-btn">Apply Now</a>
+                    </div>
+                    
+                    <div class="job-card">
+                        <h3 class="job-title">UX/UI Designer</h3>
+                        <div class="job-location">
+                            <i class="fas fa-map-marker-alt"></i> Hyderabad, India
+                        </div>
+                        <p class="job-description">Create intuitive, engaging user experiences for our web and mobile platforms. Should have a strong portfolio showcasing user-centered design methodology and problem-solving skills.</p>
+                        <a href="#" class="apply-btn">Apply Now</a>
+                    </div>
+                    
+                    <div class="job-card">
+                        <h3 class="job-title">Operations Manager</h3>
+                        <div class="job-location">
+                            <i class="fas fa-map-marker-alt"></i> Mumbai, India
+                        </div>
+                        <p class="job-description">Lead and optimize fulfillment center operations to ensure efficient processing of customer orders. Experience in logistics, supply chain management, and team leadership required.</p>
+                        <a href="#" class="apply-btn">Apply Now</a>
+                    </div>
+                    
+                    <div class="job-card">
+                        <h3 class="job-title">Data Scientist</h3>
+                        <div class="job-location">
+                            <i class="fas fa-map-marker-alt"></i> Gurugram, India
+                        </div>
+                        <p class="job-description">Apply statistical modeling and machine learning techniques to derive insights from large datasets and improve customer experience. Proficiency in Python, SQL, and data visualization tools essential.</p>
+                        <a href="#" class="apply-btn">Apply Now</a>
+                    </div>
+                    
+                    <div class="job-card">
+                        <h3 class="job-title">Digital Marketing Specialist</h3>
+                        <div class="job-location">
+                            <i class="fas fa-map-marker-alt"></i> Chennai, India
+                        </div>
+                        <p class="job-description">Plan and execute digital marketing campaigns across various channels to drive customer acquisition and retention. Experience with SEO, PPC, social media marketing, and analytics required.</p>
+                        <a href="#" class="apply-btn">Apply Now</a>
+                    </div>
+                    
+                    <div class="job-card">
+                        <h3 class="job-title">Customer Service Associate</h3>
+                        <div class="job-location">
+                            <i class="fas fa-map-marker-alt"></i> Pune, India
+                        </div>
+                        <p class="job-description">Provide exceptional customer support via phone, email, and chat to resolve issues and ensure customer satisfaction. Strong communication skills and problem-solving abilities required.</p>
+                        <a href="#" class="apply-btn">Apply Now</a>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="team-section">
+                <h2 class="section-title">Meet Our Team</h2>
+                <p>The passionate individuals who are driving innovation and excellence at AmaClone.</p>
+                
+                <div class="team-grid">
+                    <div class="team-card">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Team Member" class="team-image">
+                        <div class="team-content">
+                            <h3>Rajesh Sharma</h3>
+                            <p>Chief Technology Officer</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Team Member" class="team-image">
+                        <div class="team-content">
+                            <h3>Priya Patel</h3>
+                            <p>VP of Operations</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card">
+                        <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="Team Member" class="team-image">
+                        <div class="team-content">
+                            <h3>Arjun Mehta</h3>
+                            <p>Head of Product</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Team Member" class="team-image">
+                        <div class="team-content">
+                            <h3>Sneha Gupta</h3>
+                            <p>Director of Marketing</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="cta-section">
+                <h2>Ready to Build the Future with Us?</h2>
+                <p>Join our team of innovators and problem-solvers who are reimagining the way India shops online.</p>
+                <a href="#open-positions" class="cta-btn">Explore Opportunities</a>
+            </section>
+        </div>
+    </main>
+
+    <div class="back-to-top" id="back-to-top">
+        <i class="fas fa-chevron-up"></i> Back to top
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <div class="footer-column">
+                <h3>Get to Know Us</h3>
+                <ul>
+                    <li><a href="about.html">About AmaClone</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="corporate-info.html">Corporate Information</a></li>
+                    <li><a href="press-releases.html">Press Releases</a></li>
+                    <li><a href="community.html">Community Impact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Make Money with Us</h3>
+                <ul>
+                    <li><a href="sell.html">Sell on AmaClone</a></li>
+                    <li><a href="affiliate.html">Become an Affiliate</a></li>
+                    <li><a href="advertise.html">Advertise Your Products</a></li>
+                    <li><a href="publish.html">Self-Publish with Us</a></li>
+                    <li><a href="partner.html">Become a Partner</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="account.html">Your Account</a></li>
+                    <li><a href="shipping-policy.html">Shipping Rates & Policies</a></li>
+                    <li><a href="returns.html">Returns & Replacements</a></li>
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Connect with Us</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/" target="_blank">Facebook</a></li>
+                    <li><a href="https://twitter.com/" target="_blank">Twitter</a></li>
+                    <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+                    <li><a href="blog.html">Our Blog</a></li>
+                    <li><a href="newsletter.html">Subscribe to Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 AmaClone India. All Rights Reserved.@Tahsin Raza</p>
+        </div>
+    </footer>
+
+    <div id="notification-container"></div>
+    
+    <script src="products_india.js"></script>
+    <script src="products_india2.js"></script>
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html> 

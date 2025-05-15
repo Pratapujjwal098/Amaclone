@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center | AmaClone India</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .help-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .help-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .help-header h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .help-header p {
+            font-size: 18px;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .help-search {
+            display: flex;
+            margin: 0 auto 30px;
+            max-width: 600px;
+        }
+        
+        .help-search input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 16px;
+        }
+        
+        .help-search button {
+            padding: 12px 20px;
+            background: #f8c471;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            color: #232f3e;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .help-search button:hover {
+            background: #f39c12;
+        }
+        
+        .help-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .help-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 25px;
+            transition: transform 0.3s;
+        }
+        
+        .help-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .help-card i {
+            font-size: 40px;
+            color: #f8c471;
+            margin-bottom: 20px;
+        }
+        
+        .help-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .help-card p {
+            margin-bottom: 20px;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        .help-card a {
+            color: #0066c0;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .help-card a:hover {
+            text-decoration: underline;
+        }
+        
+        .faq-section {
+            margin-bottom: 50px;
+        }
+        
+        .faq-section h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .faq-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 70px;
+            height: 3px;
+            background-color: #f8c471;
+        }
+        
+        .accordion {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .accordion-item {
+            border-bottom: 1px solid #eee;
+        }
+        
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+        
+        .accordion-header {
+            padding: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .accordion-header:hover {
+            background: #f5f5f5;
+        }
+        
+        .accordion-header::after {
+            content: '+';
+            font-size: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .accordion-item.active .accordion-header::after {
+            content: '-';
+            transform: rotate(180deg);
+        }
+        
+        .accordion-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .accordion-item.active .accordion-content {
+            padding: 0 20px 20px;
+            max-height: 1000px;
+        }
+        
+        .contact-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .contact-option {
+            flex: 1;
+            min-width: 280px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .contact-option i {
+            font-size: 40px;
+            color: #f8c471;
+            margin-bottom: 20px;
+        }
+        
+        .contact-option h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .contact-option p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .contact-option a {
+            display: inline-block;
+            background: #f8c471;
+            color: #232f3e;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .contact-option a:hover {
+            background: #f39c12;
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .help-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-options {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html"><img src="https://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="Amazon Logo"></a>
+            </div>
+            <div class="delivery-location">
+                <div class="location-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="location-text">
+                    <span class="nav-line-1">Delivering to Lucknow 226006</span>
+                    <span class="nav-line-2">Update location</span>
+                </div>
+            </div>
+            <div class="search-bar">
+                <select name="category" id="category-select">
+                    <option value="all">All</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="books">Books</option>
+                    <option value="home">Home & Kitchen</option>
+                </select>
+                <input type="text" placeholder="Search Amazon.in" id="search-input" aria-label="Search">
+                <button type="submit" aria-label="Search"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="language-selector">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/1200px-Flag_of_India.svg.png" alt="Indian Flag">
+                <span>EN</span>
+                <i class="fas fa-caret-down"></i>
+            </div>
+            <div class="header-nav">
+                <div class="nav-item">
+                    <span class="nav-line-1">Hello, sign in</span>
+                    <span class="nav-line-2">Account & Lists <i class="fas fa-caret-down"></i></span>
+                </div>
+                <div class="nav-item">
+                    <a href="account.html">
+                        <span class="nav-line-1">Returns</span>
+                        <span class="nav-line-2">& Orders</span>
+                    </a>
+                </div>
+                <div class="nav-item cart">
+                    <a href="cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count">0</span>
+                        <span class="cart-text">Cart</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="sub-nav">
+            <ul>
+                <li><a href="#"><i class="fas fa-bars"></i> All</a></li>
+                <li><a href="products-page.html?category=fresh">Fresh</a></li>
+                <li><a href="products-page.html?category=mx-player">MX Player</a></li>
+                <li><a href="products-page.html?category=sell">Sell</a></li>
+                <li><a href="products-page.html?category=bestsellers">Bestsellers</a></li>
+                <li><a href="products-page.html?category=today-deals">Today's Deals</a></li>
+                <li><a href="products-page.html?category=mobiles">Mobiles</a></li>
+                <li><a href="products-page.html?category=fashion">Fashion</a></li>
+                <li><a href="products-page.html?category=customer-service">Customer Service</a></li>
+                <li><a href="products-page.html?category=prime">Prime</a></li>
+                <li><a href="products-page.html?category=new-releases">New Releases</a></li>
+                <li><a href="products-page.html?category=electronics">Electronics</a></li>
+                <li><a href="products-page.html?category=home-kitchen">Home & Kitchen</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="help-container">
+            <div class="help-header">
+                <h1>How Can We Help You?</h1>
+                <p>Find quick solutions to your questions or contact our support team for assistance</p>
+            </div>
+            
+            <div class="help-search">
+                <input type="text" placeholder="Search for help topics...">
+                <button type="submit">Search</button>
+            </div>
+            
+            <div class="help-grid">
+                <div class="help-card">
+                    <i class="fas fa-box"></i>
+                    <h3>Your Orders</h3>
+                    <p>Track packages, return items, or check the status of your recent orders.</p>
+                    <a href="account.html">View Your Orders →</a>
+                </div>
+                
+                <div class="help-card">
+                    <i class="fas fa-exchange-alt"></i>
+                    <h3>Returns & Refunds</h3>
+                    <p>Learn how to return items, get refunds, and manage exchange processes.</p>
+                    <a href="returns.html">Return Policies →</a>
+                </div>
+                
+                <div class="help-card">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Shipping & Delivery</h3>
+                    <p>Get information about shipping times, delivery options, and tracking.</p>
+                    <a href="shipping-policy.html">Shipping Details →</a>
+                </div>
+                
+                <div class="help-card">
+                    <i class="fas fa-credit-card"></i>
+                    <h3>Payment Methods</h3>
+                    <p>Manage your payment options, view transactions, and solve billing issues.</p>
+                    <a href="payment-methods.html">Payment Options →</a>
+                </div>
+                
+                <div class="help-card">
+                    <i class="fas fa-user-circle"></i>
+                    <h3>Account Settings</h3>
+                    <p>Update your personal information, manage security settings, and preferences.</p>
+                    <a href="account.html">Manage Account →</a>
+                </div>
+                
+                <div class="help-card">
+                    <i class="fas fa-star"></i>
+                    <h3>Prime Membership</h3>
+                    <p>Learn about Prime benefits, manage your subscription, and view membership details.</p>
+                    <a href="prime.html">Prime Benefits →</a>
+                </div>
+            </div>
+            
+            <div class="faq-section">
+                <h2>Frequently Asked Questions</h2>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">How do I track my order?</div>
+                        <div class="accordion-content">
+                            <p>To track your order:</p>
+                            <ol>
+                                <li>Sign in to your AmaClone account</li>
+                                <li>Go to "Your Orders"</li>
+                                <li>Find the order you want to track and click "Track Package"</li>
+                                <li>View the delivery status and estimated arrival date</li>
+                            </ol>
+                            <p>You can also track your order directly from the shipping confirmation email by clicking the "Track your package" button.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">How do I return an item?</div>
+                        <div class="accordion-content">
+                            <p>To return an item:</p>
+                            <ol>
+                                <li>Sign in to your AmaClone account</li>
+                                <li>Go to "Your Orders"</li>
+                                <li>Select the order with the item you want to return</li>
+                                <li>Click "Return items"</li>
+                                <li>Select the item(s) and reason for return</li>
+                                <li>Choose your preferred return method and print the return label</li>
+                                <li>Package the item securely and attach the return label</li>
+                                <li>Drop off the package at the specified location</li>
+                            </ol>
+                            <p>Most items can be returned within 30 days of receipt.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">When will I receive my refund?</div>
+                        <div class="accordion-content">
+                            <p>After we receive your return:</p>
+                            <ul>
+                                <li>Credit card refunds: 2-3 business days to process, 5-7 business days to appear on your statement</li>
+                                <li>Debit card refunds: 2-3 business days to process, 5-10 business days to appear in your account</li>
+                                <li>UPI refunds: 1-2 business days to process</li>
+                                <li>Bank account refunds: 5-7 business days to process</li>
+                                <li>AmaClone Pay Balance: Refunded immediately after the return is processed</li>
+                            </ul>
+                            <p>You can check the status of your refund in "Your Orders" under the "Order Details" page.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">How do I cancel an order?</div>
+                        <div class="accordion-content">
+                            <p>To cancel an order:</p>
+                            <ol>
+                                <li>Sign in to your AmaClone account</li>
+                                <li>Go to "Your Orders"</li>
+                                <li>Find the order you want to cancel</li>
+                                <li>Click "Cancel Items"</li>
+                                <li>Select the items you want to cancel and the reason</li>
+                                <li>Click "Cancel selected items"</li>
+                            </ol>
+                            <p>Orders can only be cancelled before they enter the shipping process. If your order has already shipped, you'll need to wait for it to arrive and then return it.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">What are the benefits of AmaClone Prime?</div>
+                        <div class="accordion-content">
+                            <p>AmaClone Prime membership includes:</p>
+                            <ul>
+                                <li>Unlimited free delivery on eligible items with no minimum order value</li>
+                                <li>Free same-day and one-day delivery in select areas</li>
+                                <li>Early access to deals and lightning deals</li>
+                                <li>Unlimited access to award-winning movies and TV shows with Prime Video</li>
+                                <li>Ad-free music with Prime Music</li>
+                                <li>Free in-game content and free games with Prime Gaming</li>
+                                <li>Unlimited 5% cashback on all purchases using AmaClone Pay ICICI Bank credit card</li>
+                                <li>Exclusive deals and discounts for Prime members</li>
+                            </ul>
+                            <p>Prime membership costs ₹1,499 per year or ₹179 per month.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">How do I report a problem with my order?</div>
+                        <div class="accordion-content">
+                            <p>If you have issues with your order:</p>
+                            <ol>
+                                <li>Sign in to your AmaClone account</li>
+                                <li>Go to "Your Orders"</li>
+                                <li>Find the problematic order</li>
+                                <li>Click "Problem with order"</li>
+                                <li>Select the specific issue from the options provided</li>
+                                <li>Follow the on-screen instructions to resolve your issue</li>
+                            </ol>
+                            <p>If you need additional assistance, contact our customer service through the "Contact Us" page.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-section">
+                <h2 class="section-title">Need More Help?</h2>
+                <div class="contact-options">
+                    <div class="contact-option">
+                        <i class="fas fa-comment-alt"></i>
+                        <h3>Chat Support</h3>
+                        <p>Chat with our customer service team for immediate assistance.</p>
+                        <a href="#" class="chat-button">Start Chat</a>
+                    </div>
+                    
+                    <div class="contact-option">
+                        <i class="fas fa-phone-alt"></i>
+                        <h3>Call Support</h3>
+                        <p>Speak directly with a customer service representative.</p>
+                        <a href="tel:18001234567">Call 1800-123-4567</a>
+                    </div>
+                    
+                    <div class="contact-option">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email Support</h3>
+                        <p>Send us an email and we'll respond within 24 hours.</p>
+                        <a href="contact.html">Contact Form</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="back-to-top" id="back-to-top">
+        <i class="fas fa-chevron-up"></i> Back to top
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <div class="footer-column">
+                <h3>Get to Know Us</h3>
+                <ul>
+                    <li><a href="about.html">About AmaClone</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="corporate-info.html">Corporate Information</a></li>
+                    <li><a href="press-releases.html">Press Releases</a></li>
+                    <li><a href="community.html">Community Impact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Make Money with Us</h3>
+                <ul>
+                    <li><a href="sell.html">Sell on AmaClone</a></li>
+                    <li><a href="affiliate.html">Become an Affiliate</a></li>
+                    <li><a href="advertise.html">Advertise Your Products</a></li>
+                    <li><a href="publish.html">Self-Publish with Us</a></li>
+                    <li><a href="partner.html">Become a Partner</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="account.html">Your Account</a></li>
+                    <li><a href="shipping-policy.html">Shipping Rates & Policies</a></li>
+                    <li><a href="returns.html">Returns & Replacements</a></li>
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Connect with Us</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/" target="_blank">Facebook</a></li>
+                    <li><a href="https://twitter.com/" target="_blank">Twitter</a></li>
+                    <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+                    <li><a href="blog.html">Our Blog</a></li>
+                    <li><a href="newsletter.html">Subscribe to Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 AmaClone India. All Rights Reserved.@Tahsin Raza</p>
+        </div>
+    </footer>
+
+    <div id="notification-container"></div>
+    
+    <script src="products_india.js"></script>
+    <script src="products_india2.js"></script>
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        // Initialize accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const item = this.parentElement;
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all accordion items
+                    document.querySelectorAll('.accordion-item').forEach(accItem => {
+                        accItem.classList.remove('active');
+                    });
+                    
+                    // If the clicked item wasn't active, open it
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+            
+            // Open first accordion item by default
+            document.querySelector('.accordion-item').classList.add('active');
+        });
+    </script>
+</body>
+</html> 

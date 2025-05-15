@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | AmaClone India</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .blog-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .blog-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .blog-header h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .blog-header p {
+            font-size: 18px;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+        
+        .main-blog {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .featured-post {
+            grid-column: 1 / -1;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+        }
+        
+        .featured-post-image {
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .featured-post-content {
+            padding: 30px;
+        }
+        
+        .category-tag {
+            display: inline-block;
+            padding: 5px 10px;
+            background: #f8c471;
+            color: #232f3e;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .post-date {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .featured-post h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        
+        .featured-post p {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .read-more {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #f8c471;
+            color: #232f3e;
+            border-radius: 4px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .read-more:hover {
+            background: #f39c12;
+            transform: translateY(-3px);
+            text-decoration: none;
+        }
+        
+        .blog-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .blog-card-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .blog-card-content {
+            padding: 20px;
+        }
+        
+        .blog-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .blog-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .sidebar-section {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-section h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f8c471;
+        }
+        
+        .popular-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .popular-post {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .popular-post-image {
+            width: 80px;
+            height: 80px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+        
+        .popular-post-content h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .popular-post-content .post-date {
+            font-size: 12px;
+        }
+        
+        .categories-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .categories-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .categories-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .categories-list a {
+            display: flex;
+            justify-content: space-between;
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .categories-list a:hover {
+            color: #f39c12;
+        }
+        
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 5px 10px;
+            background: #f5f5f5;
+            color: #555;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .tag:hover {
+            background: #f8c471;
+            color: #232f3e;
+            text-decoration: none;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .newsletter-form input {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .newsletter-form button {
+            padding: 12px;
+            background: #f8c471;
+            color: #232f3e;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .newsletter-form button:hover {
+            background: #f39c12;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            gap: 10px;
+        }
+        
+        .pagination a {
+            display: inline-block;
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid #ddd;
+            color: #333;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .pagination a:hover,
+        .pagination a.active {
+            background: #f8c471;
+            color: #232f3e;
+            border-color: #f8c471;
+        }
+        
+        @media (max-width: 992px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .blog-sidebar {
+                order: -1;
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-blog {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-post-image {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html"><img src="https://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="Amazon Logo"></a>
+            </div>
+            <div class="delivery-location">
+                <div class="location-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="location-text">
+                    <span class="nav-line-1">Delivering to Lucknow 226006</span>
+                    <span class="nav-line-2">Update location</span>
+                </div>
+            </div>
+            <div class="search-bar">
+                <select name="category" id="category-select">
+                    <option value="all">All</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="books">Books</option>
+                    <option value="home">Home & Kitchen</option>
+                </select>
+                <input type="text" placeholder="Search Amazon.in" id="search-input" aria-label="Search">
+                <button type="submit" aria-label="Search"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="language-selector">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/1200px-Flag_of_India.svg.png" alt="Indian Flag">
+                <span>EN</span>
+                <i class="fas fa-caret-down"></i>
+            </div>
+            <div class="header-nav">
+                <div class="nav-item">
+                    <span class="nav-line-1">Hello, sign in</span>
+                    <span class="nav-line-2">Account & Lists <i class="fas fa-caret-down"></i></span>
+                </div>
+                <div class="nav-item">
+                    <a href="account.html">
+                        <span class="nav-line-1">Returns</span>
+                        <span class="nav-line-2">& Orders</span>
+                    </a>
+                </div>
+                <div class="nav-item cart">
+                    <a href="cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count">0</span>
+                        <span class="cart-text">Cart</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="sub-nav">
+            <ul>
+                <li><a href="#"><i class="fas fa-bars"></i> All</a></li>
+                <li><a href="products-page.html?category=fresh">Fresh</a></li>
+                <li><a href="products-page.html?category=mx-player">MX Player</a></li>
+                <li><a href="products-page.html?category=sell">Sell</a></li>
+                <li><a href="products-page.html?category=bestsellers">Bestsellers</a></li>
+                <li><a href="products-page.html?category=today-deals">Today's Deals</a></li>
+                <li><a href="products-page.html?category=mobiles">Mobiles</a></li>
+                <li><a href="products-page.html?category=fashion">Fashion</a></li>
+                <li><a href="products-page.html?category=customer-service">Customer Service</a></li>
+                <li><a href="products-page.html?category=prime">Prime</a></li>
+                <li><a href="products-page.html?category=new-releases">New Releases</a></li>
+                <li><a href="products-page.html?category=electronics">Electronics</a></li>
+                <li><a href="products-page.html?category=home-kitchen">Home & Kitchen</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="blog-container">
+            <div class="blog-header">
+                <h1>AmaClone Blog</h1>
+                <p>Your source for e-commerce trends, product reviews, and AmaClone news</p>
+            </div>
+            
+            <div class="blog-grid">
+                <div class="main-blog">
+                    <div class="featured-post">
+                        <div class="featured-post-image" style="background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZWNvbW1lcmNlfGVufDB8fDB8fHww&auto=format&fit=crop&w=1200&q=60');"></div>
+                        <div class="featured-post-content">
+                            <span class="category-tag">E-Commerce Trends</span>
+                            <p class="post-date">April 15, 2025</p>
+                            <h2>The Rise of Voice Shopping in India: What You Need to Know</h2>
+                            <p>Voice-activated shopping is surging in popularity across India, with millions now using smart speakers and voice assistants to make purchases. This growing trend is reshaping how consumers interact with e-commerce platforms, offering unprecedented convenience but also raising questions about privacy and security. In this article, we explore the latest developments in voice shopping technology and what they mean for both shoppers and retailers in the Indian market.</p>
+                            <a href="#" class="read-more">Read Full Article</a>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-card">
+                        <div class="blog-card-image" style="background-image: url('https://images.unsplash.com/photo-1626753550935-1f67036a2c32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHNtYXJ0cGhvbmVzfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60');"></div>
+                        <div class="blog-card-content">
+                            <span class="category-tag">Product Reviews</span>
+                            <p class="post-date">April 10, 2025</p>
+                            <h3>Top 5 Budget Smartphones Under ₹15,000 in 2025</h3>
+                            <p>Looking for a new smartphone that doesn't break the bank? We've tested dozens of models to bring you our top picks for the best budget smartphones available in India right now.</p>
+                            <a href="#" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-card">
+                        <div class="blog-card-image" style="background-image: url('https://images.unsplash.com/photo-1588620552373-818a87cf8b62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8c3VzdGFpbmFibGUlMjBwcm9kdWN0c3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60');"></div>
+                        <div class="blog-card-content">
+                            <span class="category-tag">Sustainability</span>
+                            <p class="post-date">April 8, 2025</p>
+                            <h3>Sustainable Shopping: Eco-Friendly Products Taking Over in 2025</h3>
+                            <p>Discover how AmaClone is championing sustainability with our new eco-friendly product section, featuring items made from recycled materials and sustainable sources.</p>
+                            <a href="#" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-card">
+                        <div class="blog-card-image" style="background-image: url('https://images.unsplash.com/photo-1551135049-8a33b5883817?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXVnbWVudGVkJTIwcmVhbGl0eXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60');"></div>
+                        <div class="blog-card-content">
+                            <span class="category-tag">Technology</span>
+                            <p class="post-date">April 5, 2025</p>
+                            <h3>Virtual Try-On: How AR is Revolutionizing Online Shopping</h3>
+                            <p>Our new augmented reality feature lets you virtually try on clothing, glasses, and even makeup before you buy. Learn how this technology is reducing returns and increasing customer satisfaction.</p>
+                            <a href="#" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-card">
+                        <div class="blog-card-image" style="background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z3JvY2VyeXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60');"></div>
+                        <div class="blog-card-content">
+                            <span class="category-tag">Fresh</span>
+                            <p class="post-date">April 2, 2025</p>
+                            <h3>AmaClone Fresh: Now Delivering Groceries in 2 Hours Across 25 Cities</h3>
+                            <p>We've expanded our AmaClone Fresh service to cover 25 major cities in India. Order fresh produce, dairy, and other groceries and have them delivered in just 2 hours.</p>
+                            <a href="#" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-card">
+                        <div class="blog-card-image" style="background-image: url('https://images.unsplash.com/photo-1506617564039-2f3b650b7010?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHNlbGxlcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60');"></div>
+                        <div class="blog-card-content">
+                            <span class="category-tag">Seller Stories</span>
+                            <p class="post-date">March 30, 2025</p>
+                            <h3>From Local Shop to National Brand: The Success Story of Sharma Handicrafts</h3>
+                            <p>Read about how a small family-run handicraft business from Rajasthan used AmaClone's seller platform to reach customers nationwide and grow their revenue by 500%.</p>
+                            <a href="#" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                    
+                    <div class="pagination">
+                        <a href="#" class="active">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">5</a>
+                        <a href="#">Next</a>
+                    </div>
+                </div>
+                
+                <div class="blog-sidebar">
+                    <div class="sidebar-section">
+                        <h3>Search</h3>
+                        <form class="newsletter-form">
+                            <input type="text" placeholder="Search articles...">
+                            <button type="submit">Search</button>
+                        </form>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3>Popular Posts</h3>
+                        <div class="popular-posts">
+                            <div class="popular-post">
+                                <div class="popular-post-image" style="background-image: url('https://images.unsplash.com/photo-1603302576837-37561b2e2302?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGxhcHRvcHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60');"></div>
+                                <div class="popular-post-content">
+                                    <h4>Top 10 Laptops for Students in 2025</h4>
+                                    <p class="post-date">March 25, 2025</p>
+                                </div>
+                            </div>
+                            <div class="popular-post">
+                                <div class="popular-post-image" style="background-image: url('https://images.unsplash.com/photo-1582647509792-d63d4538000a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGluZGlhbiUyMGZvb2R8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60');"></div>
+                                <div class="popular-post-content">
+                                    <h4>5 Kitchen Gadgets That Make Indian Cooking Easier</h4>
+                                    <p class="post-date">March 18, 2025</p>
+                                </div>
+                            </div>
+                            <div class="popular-post">
+                                <div class="popular-post-image" style="background-image: url('https://images.unsplash.com/photo-1542393545-10f5cde2c810?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bWFya2V0aW5nfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60');"></div>
+                                <div class="popular-post-content">
+                                    <h4>How to Boost Your Sales as an AmaClone Seller</h4>
+                                    <p class="post-date">March 12, 2025</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3>Categories</h3>
+                        <ul class="categories-list">
+                            <li><a href="#">E-Commerce Trends <span>(15)</span></a></li>
+                            <li><a href="#">Product Reviews <span>(32)</span></a></li>
+                            <li><a href="#">Sustainability <span>(8)</span></a></li>
+                            <li><a href="#">Technology <span>(22)</span></a></li>
+                            <li><a href="#">Seller Stories <span>(12)</span></a></li>
+                            <li><a href="#">AmaClone Updates <span>(18)</span></a></li>
+                            <li><a href="#">Lifestyle <span>(9)</span></a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3>Tags</h3>
+                        <div class="tag-cloud">
+                            <a href="#" class="tag">E-commerce</a>
+                            <a href="#" class="tag">Smartphones</a>
+                            <a href="#" class="tag">Technology</a>
+                            <a href="#" class="tag">Deals</a>
+                            <a href="#" class="tag">Prime</a>
+                            <a href="#" class="tag">Fashion</a>
+                            <a href="#" class="tag">Electronics</a>
+                            <a href="#" class="tag">Trends</a>
+                            <a href="#" class="tag">Shopping Tips</a>
+                            <a href="#" class="tag">Sustainability</a>
+                            <a href="#" class="tag">Reviews</a>
+                            <a href="#" class="tag">Home Decor</a>
+                            <a href="#" class="tag">Books</a>
+                            <a href="#" class="tag">Gadgets</a>
+                            <a href="#" class="tag">Sellers</a>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3>Newsletter</h3>
+                        <p>Subscribe to our newsletter for the latest updates, exclusive offers, and more.</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email address">
+                            <button type="submit">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="back-to-top" id="back-to-top">
+        <i class="fas fa-chevron-up"></i> Back to top
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <div class="footer-column">
+                <h3>Get to Know Us</h3>
+                <ul>
+                    <li><a href="about.html">About AmaClone</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="corporate-info.html">Corporate Information</a></li>
+                    <li><a href="press-releases.html">Press Releases</a></li>
+                    <li><a href="community.html">Community Impact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Make Money with Us</h3>
+                <ul>
+                    <li><a href="sell.html">Sell on AmaClone</a></li>
+                    <li><a href="affiliate.html">Become an Affiliate</a></li>
+                    <li><a href="advertise.html">Advertise Your Products</a></li>
+                    <li><a href="publish.html">Self-Publish with Us</a></li>
+                    <li><a href="partner.html">Become a Partner</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="account.html">Your Account</a></li>
+                    <li><a href="shipping-policy.html">Shipping Rates & Policies</a></li>
+                    <li><a href="returns.html">Returns & Replacements</a></li>
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Connect with Us</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/" target="_blank">Facebook</a></li>
+                    <li><a href="https://twitter.com/" target="_blank">Twitter</a></li>
+                    <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+                    <li><a href="blog.html">Our Blog</a></li>
+                    <li><a href="newsletter.html">Subscribe to Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 AmaClone India. All Rights Reserved.@Tahsin Raza</p>
+        </div>
+    </footer>
+
+    <div id="notification-container"></div>
+    
+    <script src="products_india.js"></script>
+    <script src="products_india2.js"></script>
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html> 

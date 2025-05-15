@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About AmaClone | AmaClone India</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Page specific styles */
+        .about-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .about-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1626968361222-291e74711449?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZWNvbW1lcmNlJTIwd2FyZWhvdXNlfGVufDB8fDB8fHww&auto=format&fit=crop&w=1200&q=60');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+        
+        .about-hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+        
+        .about-hero p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .about-section {
+            margin-bottom: 50px;
+        }
+        
+        .about-section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .about-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 70px;
+            height: 3px;
+            background-color: #f8c471;
+        }
+        
+        .about-section p {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .about-card {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .about-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .about-card i {
+            font-size: 50px;
+            color: #f8c471;
+            margin-bottom: 20px;
+        }
+        
+        .about-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .about-card p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .about-timeline {
+            margin-top: 50px;
+            position: relative;
+        }
+        
+        .about-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background-color: #f8c471;
+        }
+        
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 30px;
+            position: relative;
+            margin-bottom: 50px;
+            width: 50%;
+        }
+        
+        .timeline-item:nth-child(even) {
+            align-self: flex-end;
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 30px;
+            margin-left: 50%;
+        }
+        
+        .timeline-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-content h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        
+        .timeline-date {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: -10px;
+            width: 20px;
+            height: 20px;
+            background-color: #f8c471;
+            border-radius: 50%;
+        }
+        
+        .timeline-item:nth-child(even)::before {
+            right: auto;
+            left: -10px;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .about-timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-right: 0;
+                padding-left: 70px;
+                justify-content: flex-start;
+            }
+            
+            .timeline-item:nth-child(even) {
+                margin-left: 0;
+                padding-left: 70px;
+            }
+            
+            .timeline-item::before,
+            .timeline-item:nth-child(even)::before {
+                left: 20px;
+                right: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html"><img src="https://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="Amazon Logo"></a>
+            </div>
+            <div class="delivery-location">
+                <div class="location-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="location-text">
+                    <span class="nav-line-1">Delivering to Lucknow 226006</span>
+                    <span class="nav-line-2">Update location</span>
+                </div>
+            </div>
+            <div class="search-bar">
+                <select name="category" id="category-select">
+                    <option value="all">All</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="books">Books</option>
+                    <option value="home">Home & Kitchen</option>
+                </select>
+                <input type="text" placeholder="Search Amazon.in" id="search-input" aria-label="Search">
+                <button type="submit" aria-label="Search"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="language-selector">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/1200px-Flag_of_India.svg.png" alt="Indian Flag">
+                <span>EN</span>
+                <i class="fas fa-caret-down"></i>
+            </div>
+            <div class="header-nav">
+                <div class="nav-item">
+                    <span class="nav-line-1">Hello, sign in</span>
+                    <span class="nav-line-2">Account & Lists <i class="fas fa-caret-down"></i></span>
+                </div>
+                <div class="nav-item">
+                    <a href="account.html">
+                        <span class="nav-line-1">Returns</span>
+                        <span class="nav-line-2">& Orders</span>
+                    </a>
+                </div>
+                <div class="nav-item cart">
+                    <a href="cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count">0</span>
+                        <span class="cart-text">Cart</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="sub-nav">
+            <ul>
+                <li><a href="#"><i class="fas fa-bars"></i> All</a></li>
+                <li><a href="products-page.html?category=fresh">Fresh</a></li>
+                <li><a href="products-page.html?category=mx-player">MX Player</a></li>
+                <li><a href="products-page.html?category=sell">Sell</a></li>
+                <li><a href="products-page.html?category=bestsellers">Bestsellers</a></li>
+                <li><a href="products-page.html?category=today-deals">Today's Deals</a></li>
+                <li><a href="products-page.html?category=mobiles">Mobiles</a></li>
+                <li><a href="products-page.html?category=fashion">Fashion</a></li>
+                <li><a href="products-page.html?category=customer-service">Customer Service</a></li>
+                <li><a href="products-page.html?category=prime">Prime</a></li>
+                <li><a href="products-page.html?category=new-releases">New Releases</a></li>
+                <li><a href="products-page.html?category=electronics">Electronics</a></li>
+                <li><a href="products-page.html?category=home-kitchen">Home & Kitchen</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="about-container">
+            <section class="about-hero">
+                <h1>About AmaClone</h1>
+                <p>Connecting millions of customers with quality products at the best prices since 2015</p>
+            </section>
+            
+            <section class="about-section">
+                <h2>Our Story</h2>
+                <p>Founded in 2015, AmaClone India started with a simple mission: to create the most customer-centric online marketplace in India, where customers can find and discover anything they might want to buy online at the best possible prices.</p>
+                <p>What began as a modest online bookstore has transformed into India's largest e-commerce platform, offering millions of products across dozens of categories. Today, we serve customers across the entire Indian subcontinent, delivering products to even the most remote areas.</p>
+                <p>Our commitment to customer satisfaction, innovation, and our core values has helped us grow into one of the most trusted and beloved brands in India. Every day, we work to earn and keep our customers' trust by focusing on their needs and continuously improving our services.</p>
+            </section>
+            
+            <section class="about-section">
+                <h2>Our Values</h2>
+                <div class="about-grid">
+                    <div class="about-card">
+                        <i class="fas fa-user-circle"></i>
+                        <h3>Customer Obsession</h3>
+                        <p>We start with the customer and work backwards. We work vigorously to earn and keep customer trust.</p>
+                    </div>
+                    <div class="about-card">
+                        <i class="fas fa-cogs"></i>
+                        <h3>Innovation</h3>
+                        <p>We continuously invent on behalf of our customers, seeking ways to improve their shopping experience.</p>
+                    </div>
+                    <div class="about-card">
+                        <i class="fas fa-hands-helping"></i>
+                        <h3>Ownership</h3>
+                        <p>We think long term and don't sacrifice long-term value for short-term results. We act on behalf of the entire company.</p>
+                    </div>
+                    <div class="about-card">
+                        <i class="fas fa-certificate"></i>
+                        <h3>High Standards</h3>
+                        <p>We have relentlessly high standards — many people may think these standards are unreasonably high.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="about-section">
+                <h2>Our Journey</h2>
+                <div class="about-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2015</div>
+                            <h3>The Beginning</h3>
+                            <p>AmaClone was founded with the vision to revolutionize e-commerce in India.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2016</div>
+                            <h3>Expansion Phase</h3>
+                            <p>Expanded our product categories and launched our first mobile app.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2017</div>
+                            <h3>Nationwide Delivery</h3>
+                            <p>Reached all states in India with our delivery network, including remote areas.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2019</div>
+                            <h3>AmaClone Prime</h3>
+                            <p>Launched AmaClone Prime with free shipping and exclusive deals for members.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2020</div>
+                            <h3>Essential Services</h3>
+                            <p>Maintained essential services during the pandemic, helping communities stay safe.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2022</div>
+                            <h3>Sustainable Practices</h3>
+                            <p>Launched eco-friendly packaging and committed to net-zero carbon by 2030.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2025</div>
+                            <h3>The Future</h3>
+                            <p>Continuing to innovate and expand, with a focus on AI-powered shopping experiences.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="about-section">
+                <h2>Leadership Team</h2>
+                <p>AmaClone is led by a diverse team of experienced professionals who are passionate about our mission and committed to our customers. Our leadership team brings together expertise from e-commerce, technology, logistics, and customer service to drive our vision forward.</p>
+                <p>We believe in leading by example and fostering a culture of innovation, inclusivity, and excellence. Our leaders are hands-on, working closely with teams across the organization to continuously improve and deliver the best possible experience for our customers.</p>
+            </section>
+        </div>
+    </main>
+
+    <div class="back-to-top" id="back-to-top">
+        <i class="fas fa-chevron-up"></i> Back to top
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <div class="footer-column">
+                <h3>Get to Know Us</h3>
+                <ul>
+                    <li><a href="about.html">About AmaClone</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="corporate-info.html">Corporate Information</a></li>
+                    <li><a href="press-releases.html">Press Releases</a></li>
+                    <li><a href="community.html">Community Impact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Make Money with Us</h3>
+                <ul>
+                    <li><a href="sell.html">Sell on AmaClone</a></li>
+                    <li><a href="affiliate.html">Become an Affiliate</a></li>
+                    <li><a href="advertise.html">Advertise Your Products</a></li>
+                    <li><a href="publish.html">Self-Publish with Us</a></li>
+                    <li><a href="partner.html">Become a Partner</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="account.html">Your Account</a></li>
+                    <li><a href="shipping-policy.html">Shipping Rates & Policies</a></li>
+                    <li><a href="returns.html">Returns & Replacements</a></li>
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Connect with Us</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/" target="_blank">Facebook</a></li>
+                    <li><a href="https://twitter.com/" target="_blank">Twitter</a></li>
+                    <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+                    <li><a href="blog.html">Our Blog</a></li>
+                    <li><a href="newsletter.html">Subscribe to Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 AmaClone India. All Rights Reserved.@Tahsin Raza</p>
+        </div>
+    </footer>
+
+    <div id="notification-container"></div>
+    
+    <script src="products_india.js"></script>
+    <script src="products_india2.js"></script>
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html> 

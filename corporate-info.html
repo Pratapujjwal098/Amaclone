@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporate Information | AmaClone India</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .corporate-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .corporate-hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+        
+        .corporate-hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+        
+        .corporate-hero p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .corporate-section {
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 70px;
+            height: 3px;
+            background-color: #f8c471;
+        }
+        
+        .corporate-section p {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        
+        .info-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .info-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #232f3e;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .stats-card {
+            background: #232f3e;
+            color: white;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .stats-number {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #f8c471;
+        }
+        
+        .stats-label {
+            font-size: 18px;
+        }
+        
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .leader-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .leader-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .leader-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .leader-info {
+            padding: 20px;
+        }
+        
+        .leader-info h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .leader-info p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+        
+        .financial-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+        
+        .financial-table th,
+        .financial-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .financial-table th {
+            background-color: #f8c471;
+            color: #232f3e;
+        }
+        
+        .financial-table tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .investor-resources {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .resource-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .resource-card i {
+            font-size: 30px;
+            color: #f8c471;
+            margin-bottom: 15px;
+        }
+        
+        .resource-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .resource-card p {
+            margin-bottom: 15px;
+            flex-grow: 1;
+            font-size: 14px;
+        }
+        
+        .resource-card a {
+            display: inline-block;
+            padding: 8px 15px;
+            background: #f8c471;
+            color: #232f3e;
+            border-radius: 4px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .resource-card a:hover {
+            background: #f39c12;
+            transform: translateY(-3px);
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .info-grid,
+            .leadership-grid,
+            .investor-resources {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html"><img src="https://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="Amazon Logo"></a>
+            </div>
+            <div class="delivery-location">
+                <div class="location-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="location-text">
+                    <span class="nav-line-1">Delivering to Lucknow 226006</span>
+                    <span class="nav-line-2">Update location</span>
+                </div>
+            </div>
+            <div class="search-bar">
+                <select name="category" id="category-select">
+                    <option value="all">All</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="books">Books</option>
+                    <option value="home">Home & Kitchen</option>
+                </select>
+                <input type="text" placeholder="Search Amazon.in" id="search-input" aria-label="Search">
+                <button type="submit" aria-label="Search"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="language-selector">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/1200px-Flag_of_India.svg.png" alt="Indian Flag">
+                <span>EN</span>
+                <i class="fas fa-caret-down"></i>
+            </div>
+            <div class="header-nav">
+                <div class="nav-item">
+                    <span class="nav-line-1">Hello, sign in</span>
+                    <span class="nav-line-2">Account & Lists <i class="fas fa-caret-down"></i></span>
+                </div>
+                <div class="nav-item">
+                    <a href="account.html">
+                        <span class="nav-line-1">Returns</span>
+                        <span class="nav-line-2">& Orders</span>
+                    </a>
+                </div>
+                <div class="nav-item cart">
+                    <a href="cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count">0</span>
+                        <span class="cart-text">Cart</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="sub-nav">
+            <ul>
+                <li><a href="#"><i class="fas fa-bars"></i> All</a></li>
+                <li><a href="products-page.html?category=fresh">Fresh</a></li>
+                <li><a href="products-page.html?category=mx-player">MX Player</a></li>
+                <li><a href="products-page.html?category=sell">Sell</a></li>
+                <li><a href="products-page.html?category=bestsellers">Bestsellers</a></li>
+                <li><a href="products-page.html?category=today-deals">Today's Deals</a></li>
+                <li><a href="products-page.html?category=mobiles">Mobiles</a></li>
+                <li><a href="products-page.html?category=fashion">Fashion</a></li>
+                <li><a href="products-page.html?category=customer-service">Customer Service</a></li>
+                <li><a href="products-page.html?category=prime">Prime</a></li>
+                <li><a href="products-page.html?category=new-releases">New Releases</a></li>
+                <li><a href="products-page.html?category=electronics">Electronics</a></li>
+                <li><a href="products-page.html?category=home-kitchen">Home & Kitchen</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="corporate-container">
+            <section class="corporate-hero">
+                <h1>Corporate Information</h1>
+                <p>Learn about AmaClone's business structure, leadership, governance, and financial information</p>
+            </section>
+            
+            <section class="corporate-section">
+                <h2 class="section-title">Company Overview</h2>
+                <div class="info-card">
+                    <h3>About AmaClone India</h3>
+                    <p>AmaClone India Private Limited is one of India's leading e-commerce companies, providing millions of customers with access to over 100 million products across dozens of categories. Founded in 2015, our mission is to be India's most customer-centric company, where customers can find and discover anything they might want to buy online at the best possible prices.</p>
+                    <p>Today, AmaClone India operates as a subsidiary of AmaClone Global, employing over 10,000 people across offices, fulfillment centers, and customer service centers throughout India. We are headquartered in Bengaluru, with regional offices in Mumbai, Delhi, Hyderabad, and Chennai.</p>
+                </div>
+                
+                <div class="info-grid">
+                    <div class="stats-card">
+                        <div class="stats-number">10,000+</div>
+                        <div class="stats-label">Employees</div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stats-number">20+</div>
+                        <div class="stats-label">Fulfillment Centers</div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stats-number">100M+</div>
+                        <div class="stats-label">Products</div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stats-number">95%</div>
+                        <div class="stats-label">PIN Codes Serviced</div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="corporate-section">
+                <h2 class="section-title">Leadership</h2>
+                <p>AmaClone India is led by a diverse team of experienced executives who drive our strategic direction and operations.</p>
+                
+                <div class="leadership-grid">
+                    <div class="leader-card">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="CEO" class="leader-image">
+                        <div class="leader-info">
+                            <h3>Vikram Malhotra</h3>
+                            <p>Chief Executive Officer</p>
+                        </div>
+                    </div>
+                    
+                    <div class="leader-card">
+                        <img src="https://randomuser.me/api/portraits/women/74.jpg" alt="CFO" class="leader-image">
+                        <div class="leader-info">
+                            <h3>Anjali Khanna</h3>
+                            <p>Chief Financial Officer</p>
+                        </div>
+                    </div>
+                    
+                    <div class="leader-card">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="CTO" class="leader-image">
+                        <div class="leader-info">
+                            <h3>Rajesh Sharma</h3>
+                            <p>Chief Technology Officer</p>
+                        </div>
+                    </div>
+                    
+                    <div class="leader-card">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="COO" class="leader-image">
+                        <div class="leader-info">
+                            <h3>Priya Patel</h3>
+                            <p>Chief Operating Officer</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="corporate-section">
+                <h2 class="section-title">Corporate Governance</h2>
+                <div class="info-card">
+                    <h3>Governance Structure</h3>
+                    <p>At AmaClone India, we are committed to maintaining the highest standards of corporate governance to ensure accountability, transparency, and ethical business practices. Our governance framework is designed to promote responsible decision-making that balances the interests of all stakeholders, including customers, employees, partners, and shareholders.</p>
+                    <p>Our Board of Directors provides oversight and guidance to the executive team, ensuring that our business strategies align with our long-term goals and values. The Board includes both executive and independent directors with diverse expertise across e-commerce, technology, finance, and business management.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3>Corporate Policies</h3>
+                    <p>AmaClone India operates under a comprehensive set of policies that guide our business conduct and decision-making:</p>
+                    <ul>
+                        <li>Code of Business Conduct and Ethics</li>
+                        <li>Anti-Corruption and Bribery Policy</li>
+                        <li>Data Privacy and Information Security Policy</li>
+                        <li>Environmental Sustainability Policy</li>
+                        <li>Diversity and Inclusion Policy</li>
+                        <li>Responsible Sourcing Guidelines</li>
+                        <li>Whistleblower Protection Policy</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="corporate-section">
+                <h2 class="section-title">Financial Information</h2>
+                <p>As a privately held subsidiary of AmaClone Global, AmaClone India does not publicly disclose detailed financial information. However, below is a summary of our recent financial performance:</p>
+                
+                <table class="financial-table">
+                    <thead>
+                        <tr>
+                            <th>Fiscal Year</th>
+                            <th>Revenue Growth</th>
+                            <th>Operational Highlights</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>FY 2024-25</td>
+                            <td>32% YoY</td>
+                            <td>Expanded to 20+ fulfillment centers; launched AmaClone Fresh in 15 new cities</td>
+                        </tr>
+                        <tr>
+                            <td>FY 2023-24</td>
+                            <td>28% YoY</td>
+                            <td>Achieved 100M+ product selection; Prime membership grew by 45%</td>
+                        </tr>
+                        <tr>
+                            <td>FY 2022-23</td>
+                            <td>25% YoY</td>
+                            <td>Launched Prime Video India original content; opened 5 new fulfillment centers</td>
+                        </tr>
+                        <tr>
+                            <td>FY 2021-22</td>
+                            <td>35% YoY</td>
+                            <td>Introduced AmaClone Pay; reached 90% of India's PIN codes for delivery</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <section class="corporate-section">
+                <h2 class="section-title">Investor Resources</h2>
+                <p>For detailed information about AmaClone Global's financial performance, investor relations, and shareholder services, please visit the AmaClone Global Investor Relations website.</p>
+                
+                <div class="investor-resources">
+                    <div class="resource-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Annual Reports</h3>
+                        <p>Access AmaClone Global's annual reports, financial statements, and SEC filings.</p>
+                        <a href="#">View Reports</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3>Earnings Calendar</h3>
+                        <p>Stay informed about upcoming earnings releases and conference calls.</p>
+                        <a href="#">View Calendar</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <i class="fas fa-file-alt"></i>
+                        <h3>Corporate Presentations</h3>
+                        <p>Download recent investor presentations and corporate fact sheets.</p>
+                        <a href="#">View Presentations</a>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="corporate-section">
+                <h2 class="section-title">Contact Information</h2>
+                <div class="info-card">
+                    <h3>Corporate Headquarters</h3>
+                    <p><strong>AmaClone India Private Limited</strong><br>
+                    World Trade Center, Brigade Gateway<br>
+                    26/1, Dr. Rajkumar Road<br>
+                    Malleshwaram West<br>
+                    Bengaluru, Karnataka 560055<br>
+                    India</p>
+                    
+                    <h3>Investor Relations Contact</h3>
+                    <p>Email: investor-relations@amaclone.in<br>
+                    Phone: +91-80-1234-5678</p>
+                    
+                    <h3>Media Relations Contact</h3>
+                    <p>Email: media@amaclone.in<br>
+                    Phone: +91-80-8765-4321</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div class="back-to-top" id="back-to-top">
+        <i class="fas fa-chevron-up"></i> Back to top
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <div class="footer-column">
+                <h3>Get to Know Us</h3>
+                <ul>
+                    <li><a href="about.html">About AmaClone</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="corporate-info.html">Corporate Information</a></li>
+                    <li><a href="press-releases.html">Press Releases</a></li>
+                    <li><a href="community.html">Community Impact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Make Money with Us</h3>
+                <ul>
+                    <li><a href="sell.html">Sell on AmaClone</a></li>
+                    <li><a href="affiliate.html">Become an Affiliate</a></li>
+                    <li><a href="advertise.html">Advertise Your Products</a></li>
+                    <li><a href="publish.html">Self-Publish with Us</a></li>
+                    <li><a href="partner.html">Become a Partner</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="account.html">Your Account</a></li>
+                    <li><a href="shipping-policy.html">Shipping Rates & Policies</a></li>
+                    <li><a href="returns.html">Returns & Replacements</a></li>
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Connect with Us</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/" target="_blank">Facebook</a></li>
+                    <li><a href="https://twitter.com/" target="_blank">Twitter</a></li>
+                    <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+                    <li><a href="blog.html">Our Blog</a></li>
+                    <li><a href="newsletter.html">Subscribe to Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 AmaClone India. All Rights Reserved.@Tahsin Raza</p>
+        </div>
+    </footer>
+
+    <div id="notification-container"></div>
+    
+    <script src="products_india.js"></script>
+    <script src="products_india2.js"></script>
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html> 

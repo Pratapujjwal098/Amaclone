@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Become an Affiliate | AmaClone India</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .affiliate-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .affiliate-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+        
+        .affiliate-hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+        
+        .affiliate-hero p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+        
+        .hero-cta {
+            display: inline-block;
+            background-color: #f8c471;
+            color: #232f3e;
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .hero-cta:hover {
+            background-color: #f39c12;
+            transform: translateY(-3px);
+            text-decoration: none;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 70px;
+            height: 3px;
+            background-color: #f8c471;
+        }
+        
+        .affiliate-section {
+            margin-bottom: 50px;
+        }
+        
+        .affiliate-section p {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 40px 0;
+        }
+        
+        .step-card {
+            flex: 1;
+            min-width: 250px;
+            margin: 15px;
+            padding: 30px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            background: #f8c471;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #232f3e;
+        }
+        
+        .step-card h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .benefit-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+        }
+        
+        .benefit-icon {
+            font-size: 30px;
+            color: #f8c471;
+            margin-right: 20px;
+        }
+        
+        .benefit-content h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .benefit-content p {
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+        
+        .commission-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+        }
+        
+        .commission-table th,
+        .commission-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .commission-table th {
+            background-color: #f8c471;
+            color: #232f3e;
+        }
+        
+        .commission-table tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .faq-section {
+            margin: 40px 0;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+        }
+        
+        .faq-question {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-question::after {
+            content: '+';
+            font-size: 24px;
+        }
+        
+        .faq-item.active .faq-question::after {
+            content: '-';
+        }
+        
+        .faq-answer {
+            display: none;
+            padding: 10px 0;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        .cta-banner {
+            background: #232f3e;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            border-radius: 8px;
+            margin: 50px 0;
+        }
+        
+        .cta-banner h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-banner p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .steps-container {
+                flex-direction: column;
+            }
+            
+            .step-card {
+                margin-bottom: 20px;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html"><img src="https://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="Amazon Logo"></a>
+            </div>
+            <div class="delivery-location">
+                <div class="location-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="location-text">
+                    <span class="nav-line-1">Delivering to Lucknow 226006</span>
+                    <span class="nav-line-2">Update location</span>
+                </div>
+            </div>
+            <div class="search-bar">
+                <select name="category" id="category-select">
+                    <option value="all">All</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="books">Books</option>
+                    <option value="home">Home & Kitchen</option>
+                </select>
+                <input type="text" placeholder="Search Amazon.in" id="search-input" aria-label="Search">
+                <button type="submit" aria-label="Search"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="language-selector">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/1200px-Flag_of_India.svg.png" alt="Indian Flag">
+                <span>EN</span>
+                <i class="fas fa-caret-down"></i>
+            </div>
+            <div class="header-nav">
+                <div class="nav-item">
+                    <span class="nav-line-1">Hello, sign in</span>
+                    <span class="nav-line-2">Account & Lists <i class="fas fa-caret-down"></i></span>
+                </div>
+                <div class="nav-item">
+                    <a href="account.html">
+                        <span class="nav-line-1">Returns</span>
+                        <span class="nav-line-2">& Orders</span>
+                    </a>
+                </div>
+                <div class="nav-item cart">
+                    <a href="cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count">0</span>
+                        <span class="cart-text">Cart</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="sub-nav">
+            <ul>
+                <li><a href="#"><i class="fas fa-bars"></i> All</a></li>
+                <li><a href="products-page.html?category=fresh">Fresh</a></li>
+                <li><a href="products-page.html?category=mx-player">MX Player</a></li>
+                <li><a href="products-page.html?category=sell">Sell</a></li>
+                <li><a href="products-page.html?category=bestsellers">Bestsellers</a></li>
+                <li><a href="products-page.html?category=today-deals">Today's Deals</a></li>
+                <li><a href="products-page.html?category=mobiles">Mobiles</a></li>
+                <li><a href="products-page.html?category=fashion">Fashion</a></li>
+                <li><a href="products-page.html?category=customer-service">Customer Service</a></li>
+                <li><a href="products-page.html?category=prime">Prime</a></li>
+                <li><a href="products-page.html?category=new-releases">New Releases</a></li>
+                <li><a href="products-page.html?category=electronics">Electronics</a></li>
+                <li><a href="products-page.html?category=home-kitchen">Home & Kitchen</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="affiliate-container">
+            <section class="affiliate-hero">
+                <h1>AmaClone Affiliate Program</h1>
+                <p>Turn your passion into profit by joining India's most rewarding affiliate program</p>
+                <a href="#join-now" class="hero-cta">Join Now</a>
+            </section>
+            
+            <section class="affiliate-section">
+                <h2 class="section-title">What is the AmaClone Affiliate Program?</h2>
+                <p>The AmaClone Affiliate Program is a way for website owners, bloggers, influencers, and content creators to earn commissions by promoting AmaClone products and driving sales through their platforms.</p>
+                <p>When you join our affiliate program, you'll get access to millions of products available on AmaClone.in. Simply create links to the products you want to promote, and when customers click through your links and make purchases, you earn commissions on qualifying sales.</p>
+            </section>
+            
+            <section class="affiliate-section">
+                <h2 class="section-title">How It Works</h2>
+                <div class="steps-container">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3>Sign Up</h3>
+                        <p>Register for the AmaClone Affiliate Program. It's free and only takes a few minutes.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3>Create Links</h3>
+                        <p>Generate custom affiliate links to AmaClone products you want to promote.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3>Share Links</h3>
+                        <p>Share your affiliate links on your website, blog, social media or apps.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h3>Earn Money</h3>
+                        <p>Earn up to 12% commission when customers purchase through your links.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="affiliate-section">
+                <h2 class="section-title">Program Benefits</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Competitive Commission Rates</h3>
+                            <p>Earn up to 12% commission on qualifying purchases, one of the highest rates in the industry.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Vast Product Selection</h3>
+                            <p>Promote from millions of products across dozens of categories available on AmaClone.in.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Detailed Reporting</h3>
+                            <p>Access comprehensive reporting tools to track clicks, conversions, and earnings in real-time.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Marketing Tools</h3>
+                            <p>Utilize our selection of banners, widgets, and API tools to maximize your earning potential.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Timely Payments</h3>
+                            <p>Receive monthly payments directly to your bank account, with a minimum payout of just ₹250.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Dedicated Support</h3>
+                            <p>Get assistance from our specialized affiliate support team to help you succeed.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="affiliate-section">
+                <h2 class="section-title">Commission Structure</h2>
+                <p>Our competitive commission rates vary by product category. Here's what you can earn:</p>
+                
+                <table class="commission-table">
+                    <thead>
+                        <tr>
+                            <th>Product Category</th>
+                            <th>Commission Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Electronics</td>
+                            <td>4-6%</td>
+                        </tr>
+                        <tr>
+                            <td>Fashion</td>
+                            <td>8-12%</td>
+                        </tr>
+                        <tr>
+                            <td>Home & Kitchen</td>
+                            <td>5-8%</td>
+                        </tr>
+                        <tr>
+                            <td>Books</td>
+                            <td>4-7%</td>
+                        </tr>
+                        <tr>
+                            <td>Beauty & Personal Care</td>
+                            <td>8-10%</td>
+                        </tr>
+                        <tr>
+                            <td>Toys & Games</td>
+                            <td>5-8%</td>
+                        </tr>
+                        <tr>
+                            <td>Sports & Fitness</td>
+                            <td>6-8%</td>
+                        </tr>
+                        <tr>
+                            <td>AmaClone Prime Subscriptions</td>
+                            <td>₹100 fixed commission</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <section class="affiliate-section">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="faq-section">
+                    <div class="faq-item active">
+                        <div class="faq-question">Who can join the AmaClone Affiliate Program?</div>
+                        <div class="faq-answer">
+                            <p>Anyone with a website, blog, app, or social media presence can join our affiliate program. You must be at least 18 years old and have a valid bank account in India to receive payments.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">How much can I earn as an affiliate?</div>
+                        <div class="faq-answer">
+                            <p>Earnings vary based on your traffic, the products you promote, and your audience's purchasing habits. Our top affiliates earn lakhs of rupees per month, while beginners might start with a few thousand rupees.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">When and how will I get paid?</div>
+                        <div class="faq-answer">
+                            <p>Payments are made monthly for earnings that exceed the minimum threshold of ₹250. We pay directly to your bank account through electronic transfer, typically within 60 days after the end of the month in which the commissions were earned.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">What is the cookie duration?</div>
+                        <div class="faq-answer">
+                            <p>When a visitor clicks on your affiliate link, a 24-hour cookie is set. If the visitor makes a qualifying purchase within that 24-hour window, you earn a commission on that sale.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">Are there any restrictions on how I can promote AmaClone products?</div>
+                        <div class="faq-answer">
+                            <p>Yes, there are guidelines you must follow. For example, you cannot use paid search ads with AmaClone trademarks, send spam emails, or make false claims about products. Please review our complete program policies for details.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="cta-banner" id="join-now">
+                <h2>Ready to Start Earning?</h2>
+                <p>Join thousands of successful affiliates and start monetizing your online presence today!</p>
+                <a href="#" class="hero-cta">Apply Now</a>
+            </section>
+        </div>
+    </main>
+
+    <div class="back-to-top" id="back-to-top">
+        <i class="fas fa-chevron-up"></i> Back to top
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <div class="footer-column">
+                <h3>Get to Know Us</h3>
+                <ul>
+                    <li><a href="about.html">About AmaClone</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="corporate-info.html">Corporate Information</a></li>
+                    <li><a href="press-releases.html">Press Releases</a></li>
+                    <li><a href="community.html">Community Impact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Make Money with Us</h3>
+                <ul>
+                    <li><a href="sell.html">Sell on AmaClone</a></li>
+                    <li><a href="affiliate.html">Become an Affiliate</a></li>
+                    <li><a href="advertise.html">Advertise Your Products</a></li>
+                    <li><a href="publish.html">Self-Publish with Us</a></li>
+                    <li><a href="partner.html">Become a Partner</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="account.html">Your Account</a></li>
+                    <li><a href="shipping-policy.html">Shipping Rates & Policies</a></li>
+                    <li><a href="returns.html">Returns & Replacements</a></li>
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Connect with Us</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/" target="_blank">Facebook</a></li>
+                    <li><a href="https://twitter.com/" target="_blank">Twitter</a></li>
+                    <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+                    <li><a href="blog.html">Our Blog</a></li>
+                    <li><a href="newsletter.html">Subscribe to Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 AmaClone India. All Rights Reserved.@Tahsin Raza</p>
+        </div>
+    </footer>
+
+    <div id="notification-container"></div>
+    
+    <script src="products_india.js"></script>
+    <script src="products_india2.js"></script>
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        // Initialize FAQ toggles
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const faqItem = this.parentElement;
+                    faqItem.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

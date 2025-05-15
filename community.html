@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Impact | AmaClone India</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .community-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .community-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1544476915-ed1370594142?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+        
+        .community-hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+        
+        .community-hero p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .community-section {
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 70px;
+            height: 3px;
+            background-color: #f8c471;
+        }
+        
+        .community-section p {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        
+        .initiatives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .initiative-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .initiative-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .initiative-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .initiative-content {
+            padding: 25px;
+        }
+        
+        .initiative-content h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #232f3e;
+        }
+        
+        .initiative-content p {
+            margin-bottom: 20px;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .learn-more {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #f8c471;
+            color: #232f3e;
+            border-radius: 4px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .learn-more:hover {
+            background: #f39c12;
+            transform: translateY(-3px);
+            text-decoration: none;
+        }
+        
+        .impact-numbers {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .impact-card {
+            background: #232f3e;
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        
+        .impact-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .impact-number {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #f8c471;
+        }
+        
+        .impact-label {
+            font-size: 18px;
+        }
+        
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .story-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 25px;
+            position: relative;
+        }
+        
+        .story-quote {
+            font-size: 16px;
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: #555;
+            position: relative;
+        }
+        
+        .story-quote::before {
+            content: '\201C';
+            font-size: 60px;
+            color: #f8c471;
+            opacity: 0.3;
+            position: absolute;
+            top: -20px;
+            left: -20px;
+        }
+        
+        .story-person {
+            display: flex;
+            align-items: center;
+        }
+        
+        .story-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        
+        .story-info h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .story-info p {
+            font-size: 14px;
+            color: #666;
+            margin: 0;
+        }
+        
+        .cta-section {
+            background: #232f3e;
+            color: white;
+            text-align: center;
+            padding: 60px 30px;
+            border-radius: 8px;
+            margin: 50px 0;
+        }
+        
+        .cta-section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .primary-btn {
+            background: #f8c471;
+            color: #232f3e;
+        }
+        
+        .secondary-btn {
+            border: 2px solid #f8c471;
+            color: white;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            text-decoration: none;
+        }
+        
+        .primary-btn:hover {
+            background: #f39c12;
+        }
+        
+        .secondary-btn:hover {
+            background: rgba(248, 196, 113, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .initiatives-grid,
+            .impact-numbers,
+            .stories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html"><img src="https://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="Amazon Logo"></a>
+            </div>
+            <div class="delivery-location">
+                <div class="location-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="location-text">
+                    <span class="nav-line-1">Delivering to Lucknow 226006</span>
+                    <span class="nav-line-2">Update location</span>
+                </div>
+            </div>
+            <div class="search-bar">
+                <select name="category" id="category-select">
+                    <option value="all">All</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="books">Books</option>
+                    <option value="home">Home & Kitchen</option>
+                </select>
+                <input type="text" placeholder="Search Amazon.in" id="search-input" aria-label="Search">
+                <button type="submit" aria-label="Search"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="language-selector">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/1200px-Flag_of_India.svg.png" alt="Indian Flag">
+                <span>EN</span>
+                <i class="fas fa-caret-down"></i>
+            </div>
+            <div class="header-nav">
+                <div class="nav-item">
+                    <span class="nav-line-1">Hello, sign in</span>
+                    <span class="nav-line-2">Account & Lists <i class="fas fa-caret-down"></i></span>
+                </div>
+                <div class="nav-item">
+                    <a href="account.html">
+                        <span class="nav-line-1">Returns</span>
+                        <span class="nav-line-2">& Orders</span>
+                    </a>
+                </div>
+                <div class="nav-item cart">
+                    <a href="cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count">0</span>
+                        <span class="cart-text">Cart</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="sub-nav">
+            <ul>
+                <li><a href="#"><i class="fas fa-bars"></i> All</a></li>
+                <li><a href="products-page.html?category=fresh">Fresh</a></li>
+                <li><a href="products-page.html?category=mx-player">MX Player</a></li>
+                <li><a href="products-page.html?category=sell">Sell</a></li>
+                <li><a href="products-page.html?category=bestsellers">Bestsellers</a></li>
+                <li><a href="products-page.html?category=today-deals">Today's Deals</a></li>
+                <li><a href="products-page.html?category=mobiles">Mobiles</a></li>
+                <li><a href="products-page.html?category=fashion">Fashion</a></li>
+                <li><a href="products-page.html?category=customer-service">Customer Service</a></li>
+                <li><a href="products-page.html?category=prime">Prime</a></li>
+                <li><a href="products-page.html?category=new-releases">New Releases</a></li>
+                <li><a href="products-page.html?category=electronics">Electronics</a></li>
+                <li><a href="products-page.html?category=home-kitchen">Home & Kitchen</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="community-container">
+            <section class="community-hero">
+                <h1>Community Impact</h1>
+                <p>Discover how AmaClone is working to make a positive difference across India</p>
+            </section>
+            
+            <section class="community-section">
+                <h2 class="section-title">Our Commitment</h2>
+                <p>At AmaClone, we believe that success and responsibility go hand in hand. As we grow, we're committed to giving back to the communities we serve, addressing social challenges, and creating positive impact across India.</p>
+                <p>Our community initiatives focus on education, entrepreneurship, skill development, disaster relief, and environmental sustainability. By leveraging our scale, resources, and technology, we aim to create meaningful and lasting change that empowers individuals and strengthens communities.</p>
+            </section>
+            
+            <section class="community-section">
+                <h2 class="section-title">Key Initiatives</h2>
+                <div class="initiatives-grid">
+                    <div class="initiative-card">
+                        <div class="initiative-image" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="initiative-content">
+                            <h3>Digital Vikas Program</h3>
+                            <p>Empowering small businesses across India with digital skills, resources, and infrastructure to thrive in the online marketplace.</p>
+                            <a href="#" class="learn-more">Learn More</a>
+                        </div>
+                    </div>
+                    
+                    <div class="initiative-card">
+                        <div class="initiative-image" style="background-image: url('https://images.unsplash.com/photo-1527525443983-6e60c75fff46?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="initiative-content">
+                            <h3>Future Engineers</h3>
+                            <p>Supporting STEM education for underprivileged students through scholarships, technology resources, and mentorship programs.</p>
+                            <a href="#" class="learn-more">Learn More</a>
+                        </div>
+                    </div>
+                    
+                    <div class="initiative-card">
+                        <div class="initiative-image" style="background-image: url('https://images.unsplash.com/photo-1572021335469-31706a17aaef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="initiative-content">
+                            <h3>Disaster Relief Network</h3>
+                            <p>Mobilizing our logistics capabilities and resources to deliver essential supplies during natural disasters and emergencies.</p>
+                            <a href="#" class="learn-more">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="community-section">
+                <h2 class="section-title">Impact by Numbers</h2>
+                <div class="impact-numbers">
+                    <div class="impact-card">
+                        <div class="impact-number">10L+</div>
+                        <div class="impact-label">Small Businesses Supported</div>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <div class="impact-number">₹250Cr</div>
+                        <div class="impact-label">Community Investment</div>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <div class="impact-number">50,000+</div>
+                        <div class="impact-label">Students Reached</div>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <div class="impact-number">100+</div>
+                        <div class="impact-label">Community Projects</div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="community-section">
+                <h2 class="section-title">Impact Stories</h2>
+                <p>Real stories from people and communities across India who have been positively impacted by our initiatives.</p>
+                
+                <div class="stories-grid">
+                    <div class="story-card">
+                        <div class="story-quote">AmaClone's Digital Vikas Program helped me transform my small handicraft business from a local shop to a national brand. Today, I employ 15 artisans from my village and ship products across India.</div>
+                        <div class="story-person">
+                            <img src="https://randomuser.me/api/portraits/women/62.jpg" alt="Testimonial" class="story-avatar">
+                            <div class="story-info">
+                                <h4>Lakshmi Devi</h4>
+                                <p>Handicraft Entrepreneur, Rajasthan</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="story-card">
+                        <div class="story-quote">The AmaClone Future Engineers scholarship made it possible for me to pursue my dream of studying computer science. The mentorship from AmaClone engineers has been invaluable in my journey.</div>
+                        <div class="story-person">
+                            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Testimonial" class="story-avatar">
+                            <div class="story-info">
+                                <h4>Ravi Kumar</h4>
+                                <p>Computer Science Student, Chennai</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="story-card">
+                        <div class="story-quote">When floods devastated our village in Kerala, AmaClone's Disaster Relief Network was among the first to reach us with essential supplies. Their prompt response helped our community in our darkest hours.</div>
+                        <div class="story-person">
+                            <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Testimonial" class="story-avatar">
+                            <div class="story-info">
+                                <h4>Thomas Mathew</h4>
+                                <p>Community Leader, Kerala</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="cta-section">
+                <h2>Join Us in Making a Difference</h2>
+                <p>Together, we can create positive change in communities across India. Explore opportunities to partner with us or support our initiatives.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="cta-btn primary-btn">Partner With Us</a>
+                    <a href="#" class="cta-btn secondary-btn">View Annual Impact Report</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div class="back-to-top" id="back-to-top">
+        <i class="fas fa-chevron-up"></i> Back to top
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <div class="footer-column">
+                <h3>Get to Know Us</h3>
+                <ul>
+                    <li><a href="about.html">About AmaClone</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="corporate-info.html">Corporate Information</a></li>
+                    <li><a href="press-releases.html">Press Releases</a></li>
+                    <li><a href="community.html">Community Impact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Make Money with Us</h3>
+                <ul>
+                    <li><a href="sell.html">Sell on AmaClone</a></li>
+                    <li><a href="affiliate.html">Become an Affiliate</a></li>
+                    <li><a href="advertise.html">Advertise Your Products</a></li>
+                    <li><a href="publish.html">Self-Publish with Us</a></li>
+                    <li><a href="partner.html">Become a Partner</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="account.html">Your Account</a></li>
+                    <li><a href="shipping-policy.html">Shipping Rates & Policies</a></li>
+                    <li><a href="returns.html">Returns & Replacements</a></li>
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Connect with Us</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/" target="_blank">Facebook</a></li>
+                    <li><a href="https://twitter.com/" target="_blank">Twitter</a></li>
+                    <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+                    <li><a href="blog.html">Our Blog</a></li>
+                    <li><a href="newsletter.html">Subscribe to Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 AmaClone India. All Rights Reserved.@Tahsin Raza</p>
+        </div>
+    </footer>
+
+    <div id="notification-container"></div>
+    
+    <script src="products_india.js"></script>
+    <script src="products_india2.js"></script>
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html> 

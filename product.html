@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product | AmaClone India</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Product Page Specific Styles */
+        .product-container {
+            max-width: 1300px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 45% 55%;
+            gap: 30px;
+        }
+        
+        @media (max-width: 992px) {
+            .product-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .product-images {
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+        
+        .main-image {
+            margin-bottom: 15px;
+            text-align: center;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        #main-product-image {
+            max-width: 100%;
+            max-height: 400px;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .thumbnails {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .thumbnail {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .thumbnail:hover {
+            border-color: #f8c471;
+        }
+        
+        .thumbnail.active {
+            border-color: #f8c471;
+        }
+        
+        .product-info {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .breadcrumbs {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+        
+        .breadcrumbs a {
+            color: #7f8c8d;
+            text-decoration: none;
+        }
+        
+        .breadcrumbs a:hover {
+            color: #f8c471;
+            text-decoration: underline;
+        }
+        
+        #product-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            line-height: 1.4;
+        }
+        
+        #product-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .stars {
+            color: #f39c12;
+            margin-right: 10px;
+        }
+        
+        .review-count {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        .product-price {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        #current-price {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        #original-price {
+            text-decoration: line-through;
+            color: #7f8c8d;
+            margin-left: 15px;
+            font-size: 18px;
+        }
+        
+        #discount-label {
+            background-color: #e74c3c;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-left: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .availability {
+            margin-bottom: 20px;
+        }
+        
+        .in-stock {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .out-of-stock {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .delivery-info {
+            margin-bottom: 20px;
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        
+        .delivery-info div {
+            margin-bottom: 10px;
+        }
+        
+        .purchase-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .quantity-selector {
+            margin-bottom: 20px;
+        }
+        
+        .quantity-selector label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        #quantity-select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 80px;
+        }
+        
+        .purchase-btns {
+            display: flex;
+            gap: 15px;
+        }
+        
+        @media (max-width: 480px) {
+            .purchase-btns {
+                flex-direction: column;
+            }
+        }
+        
+        #add-to-cart, #buy-now {
+            flex: 1;
+            padding: 15px 0;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        #add-to-cart {
+            background-color: #f8c471;
+            color: #2c3e50;
+        }
+        
+        #add-to-cart:hover {
+            background-color: #f5b041;
+        }
+        
+        #buy-now {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        #buy-now:hover {
+            background-color: #c0392b;
+        }
+        
+        .product-tabs {
+            margin-top: 40px;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .tab-btn {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            color: #7f8c8d;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn:hover {
+            color: #f8c471;
+        }
+        
+        .tab-btn.active {
+            color: #2c3e50;
+            border-bottom-color: #f8c471;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        #product-description {
+            line-height: 1.6;
+        }
+        
+        #product-description p {
+            margin-bottom: 15px;
+        }
+        
+        #product-description ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        #product-description li {
+            margin-bottom: 10px;
+        }
+        
+        .specifications-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .specifications-table th,
+        .specifications-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .specifications-table th {
+            width: 30%;
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        
+        .related-products {
+            margin-top: 60px;
+        }
+        
+        .related-products h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .related-products h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: #f8c471;
+        }
+        
+        .related-products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">AmaClone</a>
+            </div>
+            <div class="search-bar">
+                <select name="category" id="category-select">
+                    <option value="all">All</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="books">Books</option>
+                    <option value="home">Home & Kitchen</option>
+                </select>
+                <input type="text" placeholder="Search AmaClone India">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="header-nav">
+                <div class="nav-item">
+                    <span class="nav-line-1">Hello, Sign in</span>
+                    <span class="nav-line-2">Account & Lists</span>
+                </div>
+                <div class="nav-item">
+                    <span class="nav-line-1">Returns</span>
+                    <span class="nav-line-2">& Orders</span>
+                </div>
+                <div class="nav-item cart">
+                    <a href="cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="sub-nav">
+            <ul>
+                <li><a href="#"><i class="fas fa-bars"></i> All</a></li>
+                <li><a href="products-page.html?category=electronics">Electronics</a></li>
+                <li><a href="products-page.html?category=clothing">Clothing</a></li>
+                <li><a href="products-page.html?category=books">Books</a></li>
+                <li><a href="products-page.html?category=home">Home & Kitchen</a></li>
+                <li><a href="products-page.html?category=toys">Toys</a></li>
+                <li><a href="products-page.html?featured=true">Today's Deals</a></li>
+                <li><a href="products-page.html?bestseller=true">Best Sellers</a></li>
+                <li><a href="products-page.html">All Products</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="product-container">
+            <div class="product-images">
+                <div class="main-image">
+                    <img id="main-product-image" src="" alt="Product Image">
+                </div>
+                <div id="thumbnail-container" class="thumbnails">
+                    <!-- Thumbnails will be loaded dynamically -->
+                </div>
+            </div>
+            
+            <div class="product-info">
+                <div id="breadcrumbs" class="breadcrumbs">
+                    <!-- Breadcrumbs will be loaded dynamically -->
+                </div>
+                
+                <h1 id="product-title">Product Title</h1>
+                
+                <div id="product-rating">
+                    <!-- Rating will be loaded dynamically -->
+                </div>
+                
+                <div class="product-price">
+                    <span id="current-price">₹0.00</span>
+                    <span id="original-price">₹0.00</span>
+                    <span id="discount-label">0% off</span>
+                </div>
+                
+                <div class="availability">
+                    <span>Availability: </span>
+                    <span id="product-availability" class="in-stock">In Stock</span>
+                </div>
+                
+                <div class="delivery-info">
+                    <div>
+                        <i class="fas fa-check-circle" style="color: #27ae60;"></i>
+                        <span id="stock-status">In Stock</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-truck" style="color: #3498db;"></i>
+                        Free Delivery by <span id="delivery-date">Wednesday, July 20</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-map-marker-alt" style="color: #e74c3c;"></i>
+                        Deliver to India
+                    </div>
+                </div>
+                
+                <div class="purchase-options">
+                    <div class="quantity-selector">
+                        <label for="quantity-select">Quantity:</label>
+                        <select id="quantity-select">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    
+                    <div class="purchase-price">
+                        <span>Purchase Price: </span>
+                        <span id="purchase-price">₹0.00</span>
+                    </div>
+                    
+                    <div class="purchase-btns">
+                        <button id="add-to-cart">Add to Cart</button>
+                        <button id="buy-now">Buy Now</button>
+                    </div>
+                </div>
+                
+                <div class="product-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="description-tab">Description</button>
+                        <button class="tab-btn" data-tab="specifications-tab">Specifications</button>
+                        <button class="tab-btn" data-tab="reviews-tab">Reviews</button>
+                    </div>
+                    
+                    <div id="description-tab" class="tab-content active">
+                        <div id="product-description">
+                            <!-- Product description will be loaded dynamically -->
+                        </div>
+                    </div>
+                    
+                    <div id="specifications-tab" class="tab-content">
+                        <table class="specifications-table" id="specifications-table">
+                            <!-- Specifications will be loaded dynamically -->
+                        </table>
+                    </div>
+                    
+                    <div id="reviews-tab" class="tab-content">
+                        <h3>Customer Reviews</h3>
+                        <p>Reviews will be implemented in future updates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="related-products">
+            <h2>You May Also Like</h2>
+            <div class="related-products-grid" id="related-products">
+                <!-- Related products will be loaded dynamically -->
+            </div>
+        </div>
+    </main>
+
+    <div class="back-to-top" id="back-to-top">
+        <i class="fas fa-chevron-up"></i> Back to top
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <div class="footer-column">
+                <h3>Get to Know Us</h3>
+                <ul>
+                    <li><a href="about.html">About AmaClone</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="corporate-info.html">Corporate Information</a></li>
+                    <li><a href="press-releases.html">Press Releases</a></li>
+                    <li><a href="community.html">Community Impact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Make Money with Us</h3>
+                <ul>
+                    <li><a href="sell.html">Sell on AmaClone</a></li>
+                    <li><a href="affiliate.html">Become an Affiliate</a></li>
+                    <li><a href="advertise.html">Advertise Your Products</a></li>
+                    <li><a href="publish.html">Self-Publish with Us</a></li>
+                    <li><a href="partner.html">Become a Partner</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="account.html">Your Account</a></li>
+                    <li><a href="shipping-policy.html">Shipping Rates & Policies</a></li>
+                    <li><a href="returns.html">Returns & Replacements</a></li>
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Connect with Us</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/" target="_blank">Facebook</a></li>
+                    <li><a href="https://twitter.com/" target="_blank">Twitter</a></li>
+                    <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+                    <li><a href="blog.html">Our Blog</a></li>
+                    <li><a href="newsletter.html">Subscribe to Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 AmaClone India. All Rights Reserved.@Tahsin Raza</p>
+        </div>
+    </footer>
+
+    <div id="notification-container"></div>
+    
+    <script src="products_india.js"></script>
+    <script src="products_india2.js"></script>
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html> 
